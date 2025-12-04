@@ -16,11 +16,7 @@
 
 <!-- Герой-секция с видео -->
 <section class="hero">
-    <video autoplay muted loop class="hero-video">
-        <!-- Вставьте ваше видео здесь -->
-        <source src="img/инетр.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
+    <img class="hero-img" src="img/background.png" alt="">
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content">
@@ -45,7 +41,7 @@
             <div class="catalog-card">
                 <div class="catalog-badge">Популярный</div>
                 <div class="catalog-img">
-                    <i class="fas fa-mountain"></i>
+                    <img src="img/pesok2.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>Песок</h3>
@@ -57,7 +53,7 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <i class="fas fa-gem"></i>
+                    <img src="img/pgs1.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>ПГС</h3>
@@ -70,11 +66,11 @@
             <div class="catalog-card">
                 <div class="catalog-badge">Хит продаж</div>
                 <div class="catalog-img">
-                    <i class="fas fa-cubes"></i>
+                    <img src="img/opgs.png" alt="">
                 </div>
                 <div class="catalog-content">
-                    <h3>Щебень</h3>
-                    <p>Щебень различных фракций и происхождения</p>
+                    <h3>ОПГС</h3>
+                    <p>Обогащёно песчано-гравийная смесь для различных нужд</p>
                     <div class="catalog-price">от 800 руб/т</div>
                     <button class="btn btn-primary">Подробнее</button>
                 </div>
@@ -82,11 +78,11 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <i class="fas fa-fire"></i>
+                    <img src="img/sheben.png" alt="">
                 </div>
                 <div class="catalog-content">
-                    <h3>Известь</h3>
-                    <p>Строительная известь для различных работ</p>
+                    <h3>Щебень</h3>
+                    <p>Щебень различных фракций и происхождения</p>
                     <div class="catalog-price">от 1200 руб/т</div>
                     <button class="btn btn-primary">Подробнее</button>
                 </div>

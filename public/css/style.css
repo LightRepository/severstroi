@@ -383,7 +383,7 @@ nav ul {
     color: var(--text-light);
 }
 
-.hero-video {
+.hero-img {
     position: absolute;
     top: 0;
     left: 0;
@@ -531,9 +531,9 @@ nav ul {
     overflow: hidden;
 }
 
-.catalog-img i {
-    font-size: 60px;
-    opacity: 0.8;
+.catalog-img img {
+    object-fit: contain;
+    width: 100%;
 }
 
 .catalog-content {
@@ -1119,6 +1119,8 @@ footer {
     .hero-content {
         padding: 0 40px;
     }
+
+
 
     .catalog-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
