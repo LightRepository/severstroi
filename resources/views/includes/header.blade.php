@@ -1,7 +1,7 @@
 <header>
     <div class="container header-container">
         <div class="logo">
-            <div class="logo-icon"><img src="img/Full Logo.svg" alt=""></div>
+            <div class="logo-icon"><a href=""><img src="img/Full Logo.svg" alt=""></a></div>
         </div>
 
         <nav id="main-nav">

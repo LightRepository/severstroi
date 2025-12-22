@@ -14,13 +14,13 @@
 <!-- Шапка сайта -->
 @include("includes.header")
 
-<!-- Герой-секция с видео -->
+<!-- Герой-секция -->
 <section class="hero">
     <img class="hero-img" src="img/background.png" alt="">
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content">
-            <h1 class="hero-title">Инертные материалы <span>с доставкой</span></h1>
+            <h1 class="hero-title">Инертные материалы <br><span>с доставкой</span></h1>
             <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой</p>
             <div class="hero-buttons">
                 <a href="#catalog" class="btn btn-primary">Каталог материалов</a>
@@ -41,7 +41,7 @@
             <div class="catalog-card">
                 <div class="catalog-badge">Популярный</div>
                 <div class="catalog-img">
-                    <img src="img/pesok2.png" alt="">
+                    <img src="img/pesok/pesok2.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>Песок</h3>
@@ -53,7 +53,7 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="img/pgs1.png" alt="">
+                    <img src="img/pgs/pgs1.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>ПГС</h3>
@@ -66,7 +66,7 @@
             <div class="catalog-card">
                 <div class="catalog-badge">Хит продаж</div>
                 <div class="catalog-img">
-                    <img src="img/opgs.png" alt="">
+                    <img src="img/opgs/opgs.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>ОПГС</h3>
@@ -78,10 +78,21 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="img/sheben.png" alt="">
+                    <img src="img/sheben/sheben1000f31-63.png" alt="">
                 </div>
                 <div class="catalog-content">
                     <h3>Щебень</h3>
+                    <p>Щебень различных фракций и происхождения</p>
+                    <div class="catalog-price">от 1200 руб/т</div>
+                    <button class="btn btn-primary">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <div class="catalog-img">
+                    <img src="img/asfalt/asfalt1.png" alt="">
+                </div>
+                <div class="catalog-content">
+                    <h3>Асфальтная крошка</h3>
                     <p>Щебень различных фракций и происхождения</p>
                     <div class="catalog-price">от 1200 руб/т</div>
                     <button class="btn btn-primary">Подробнее</button>
@@ -92,50 +103,50 @@
 </section>
 
 <!-- Преимущества -->
-<section class="advantages" id="advantages">
-    <div class="container">
-        <div class="advantages-content">
-            <div class="advantages-text">
-                <h2>Почему выбирают нас</h2>
-                <p>Мы предлагаем не просто материалы, а комплексное решение для ваших строительных задач с гарантией качества и оперативной доставкой.</p>
-                <a href="#contacts" class="btn btn-accent">Связаться с нами</a>
-            </div>
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>Быстрая доставка</h3>
-                    <p>Доставка в день заказа собственным транспортом</p>
-                </div>
+{{--<section class="advantages" id="advantages">--}}
+{{--    <div class="container">--}}
+{{--        <div class="advantages-content">--}}
+{{--            <div class="advantages-text">--}}
+{{--                <h2>Почему выбирают нас</h2>--}}
+{{--                <p>Мы предлагаем не просто материалы, а комплексное решение для ваших строительных задач с гарантией качества и оперативной доставкой.</p>--}}
+{{--                <a href="#contacts" class="btn btn-accent">Связаться с нами</a>--}}
+{{--            </div>--}}
+{{--            <div class="advantages-grid">--}}
+{{--                <div class="advantage-card">--}}
+{{--                    <div class="advantage-icon">--}}
+{{--                        <i class="fas fa-shipping-fast"></i>--}}
+{{--                    </div>--}}
+{{--                    <h3>Быстрая доставка</h3>--}}
+{{--                    <p>Доставка в день заказа собственным транспортом</p>--}}
+{{--                </div>--}}
 
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Гарантия качества</h3>
-                    <p>Все материалы соответствуют ГОСТ и имеют сертификаты</p>
-                </div>
+{{--                <div class="advantage-card">--}}
+{{--                    <div class="advantage-icon">--}}
+{{--                        <i class="fas fa-medal"></i>--}}
+{{--                    </div>--}}
+{{--                    <h3>Гарантия качества</h3>--}}
+{{--                    <p>Все материалы соответствуют ГОСТ и имеют сертификаты</p>--}}
+{{--                </div>--}}
 
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-ruble-sign"></i>
-                    </div>
-                    <h3>Доступные цены</h3>
-                    <p>Прямые поставки от производителей без посредников</p>
-                </div>
+{{--                <div class="advantage-card">--}}
+{{--                    <div class="advantage-icon">--}}
+{{--                        <i class="fas fa-ruble-sign"></i>--}}
+{{--                    </div>--}}
+{{--                    <h3>Доступные цены</h3>--}}
+{{--                    <p>Прямые поставки от производителей без посредников</p>--}}
+{{--                </div>--}}
 
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Круглосуточная поддержка</h3>
-                    <p>Консультации и прием заказов 24/7</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--                <div class="advantage-card">--}}
+{{--                    <div class="advantage-icon">--}}
+{{--                        <i class="fas fa-headset"></i>--}}
+{{--                    </div>--}}
+{{--                    <h3>Круглосуточная поддержка</h3>--}}
+{{--                    <p>Консультации и прием заказов 24/7</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
 <!-- О компании -->
 <section class="pickup-points" id="pickup-points">
