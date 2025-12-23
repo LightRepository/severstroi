@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>СеверСтрой - Инертные материалы с доставкой</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 <!-- Оверлей для мобильного меню -->
@@ -16,14 +16,14 @@
 
 <!-- Герой-секция -->
 <section class="hero">
-    <img class="hero-img" src="img/background.png" alt="">
+    <img class="hero-img" src="{{ asset('img/background.png') }}" alt="Строительные материалы">
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Инертные материалы <br><span>с доставкой</span></h1>
-            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой</p>
+            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой по Ижевску и Удмуртии</p>
             <div class="hero-buttons">
-                <a href="#catalog" class="btn btn-primary">Каталог материалов</a>
+                <a href="{{ route('catalog') }}" class="btn btn-primary">Каталог материалов</a>
                 <a href="#contacts" class="btn btn-outline">Связаться с нами</a>
             </div>
         </div>
@@ -41,114 +41,69 @@
             <div class="catalog-card">
                 <div class="catalog-badge">Популярный</div>
                 <div class="catalog-img">
-                    <img src="img/pesok/pesok2.png" alt="">
+                    <img src="{{ asset('img/pesok/pesok2.png') }}" alt="Песок строительный">
                 </div>
                 <div class="catalog-content">
                     <h3>Песок</h3>
-                    <p>Различные виды песка для строительных работ</p>
+                    <p>Карьерный и речной песок различных фракций для строительных и отделочных работ</p>
                     <div class="catalog-price">от 450 руб/т</div>
-                    <a href="./product"><button class="btn btn-primary" >Подробнее</button></a>
+                    <a href="{{ route('catalog') }}?category=sand" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="img/pgs/pgs1.png" alt="">
+                    <img src="{{ asset('img/pgs/pgs1.png') }}" alt="ПГС">
                 </div>
                 <div class="catalog-content">
                     <h3>ПГС</h3>
-                    <p>Песчано-гравийная смесь для различных нужд</p>
+                    <p>Песчано-гравийная смесь природного происхождения для дорожных работ и фундаментов</p>
                     <div class="catalog-price">от 600 руб/т</div>
-                    <button class="btn btn-primary">Подробнее</button>
+                    <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
 
             <div class="catalog-card">
                 <div class="catalog-badge">Хит продаж</div>
                 <div class="catalog-img">
-                    <img src="img/opgs/opgs.png" alt="">
+                    <img src="{{ asset('img/opgs/opgs.png') }}" alt="ОПГС">
                 </div>
                 <div class="catalog-content">
                     <h3>ОПГС</h3>
-                    <p>Обогащёно песчано-гравийная смесь для различных нужд</p>
+                    <p>Обогащенная песчано-гравийная смесь с повышенным содержанием гравия для бетона</p>
                     <div class="catalog-price">от 800 руб/т</div>
-                    <button class="btn btn-primary">Подробнее</button>
+                    <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="img/sheben/sheben1000f31-63.png" alt="">
+                    <img src="{{ asset('img/sheben/sheben1000f31-63.png') }}" alt="Щебень">
                 </div>
                 <div class="catalog-content">
                     <h3>Щебень</h3>
-                    <p>Щебень различных фракций и происхождения</p>
+                    <p>Гранитный и гравийный щебень различных фракций и марок прочности</p>
                     <div class="catalog-price">от 1200 руб/т</div>
-                    <button class="btn btn-primary">Подробнее</button>
+                    <a href="{{ route('catalog') }}?category=stone" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
+
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="img/asfalt/asfalt1.png" alt="">
+                    <img src="{{ asset('img/asfalt/asfalt1.png') }}" alt="Асфальтная крошка">
                 </div>
                 <div class="catalog-content">
                     <h3>Асфальтная крошка</h3>
-                    <p>Щебень различных фракций и происхождения</p>
+                    <p>Вторичный материал для отсыпки дорог, парковок и временных покрытий</p>
                     <div class="catalog-price">от 1200 руб/т</div>
-                    <button class="btn btn-primary">Подробнее</button>
+                    <a href="{{ route('catalog') }}?category=asphalt" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Преимущества -->
-{{--<section class="advantages" id="advantages">--}}
-{{--    <div class="container">--}}
-{{--        <div class="advantages-content">--}}
-{{--            <div class="advantages-text">--}}
-{{--                <h2>Почему выбирают нас</h2>--}}
-{{--                <p>Мы предлагаем не просто материалы, а комплексное решение для ваших строительных задач с гарантией качества и оперативной доставкой.</p>--}}
-{{--                <a href="#contacts" class="btn btn-accent">Связаться с нами</a>--}}
-{{--            </div>--}}
-{{--            <div class="advantages-grid">--}}
-{{--                <div class="advantage-card">--}}
-{{--                    <div class="advantage-icon">--}}
-{{--                        <i class="fas fa-shipping-fast"></i>--}}
-{{--                    </div>--}}
-{{--                    <h3>Быстрая доставка</h3>--}}
-{{--                    <p>Доставка в день заказа собственным транспортом</p>--}}
-{{--                </div>--}}
-
-{{--                <div class="advantage-card">--}}
-{{--                    <div class="advantage-icon">--}}
-{{--                        <i class="fas fa-medal"></i>--}}
-{{--                    </div>--}}
-{{--                    <h3>Гарантия качества</h3>--}}
-{{--                    <p>Все материалы соответствуют ГОСТ и имеют сертификаты</p>--}}
-{{--                </div>--}}
-
-{{--                <div class="advantage-card">--}}
-{{--                    <div class="advantage-icon">--}}
-{{--                        <i class="fas fa-ruble-sign"></i>--}}
-{{--                    </div>--}}
-{{--                    <h3>Доступные цены</h3>--}}
-{{--                    <p>Прямые поставки от производителей без посредников</p>--}}
-{{--                </div>--}}
-
-{{--                <div class="advantage-card">--}}
-{{--                    <div class="advantage-icon">--}}
-{{--                        <i class="fas fa-headset"></i>--}}
-{{--                    </div>--}}
-{{--                    <h3>Круглосуточная поддержка</h3>--}}
-{{--                    <p>Консультации и прием заказов 24/7</p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</section>--}}
-
-<!-- О компании -->
+<!-- Точки самовывоза -->
 <section class="pickup-points" id="pickup-points">
     <div class="container">
         <div class="section-title">
@@ -220,7 +175,6 @@
             <div class="pickup-map animate">
                 <div class="map-container">
                     <div class="map-visual">
-                        <!-- Здесь будет карта с точками самовывоза -->
                         <div class="map-placeholder">
                             <div class="map-points">
                                 <div class="map-point active" style="top: 30%; left: 45%;" data-point="1">
@@ -254,7 +208,6 @@
                                 </div>
                             </div>
                             <div class="map-base">
-                                <!-- Здесь будет стилизованная карта региона -->
                                 <div class="region-outline"></div>
                             </div>
                         </div>
@@ -314,6 +267,7 @@
                 <div class="contact-item">
                     <h3><i class="fas fa-phone"></i> Телефон</h3>
                     <p>+7 (XXX) XXX-XX-XX</p>
+                    <p class="small-text">Работаем круглосуточно</p>
                 </div>
 
                 <div class="contact-item">
@@ -322,8 +276,8 @@
                 </div>
 
                 <div class="contact-item">
-                    <h3><i class="fas fa-clock"></i> Режим работы</h3>
-                    <p>Пн-Пт: 9:00-18:00<br>Сб: 10:00-16:00<br>Вс: выходной</p>
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p>info@severstroy.ru</p>
                 </div>
 
                 <div class="contact-item">
@@ -341,10 +295,11 @@
             <div class="map-container-contact">
                 <div class="map-contact">
                     <div class="map-placeholder-contact">
-                        [Карта с расположением компании]
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Карта с расположением нашей компании</p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">г. Ижевск, ул. Карла Маркса, 244</p>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -353,6 +308,6 @@
 <!-- Подвал -->
 @include("includes.footer")
 
-<script src="js/script.js"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

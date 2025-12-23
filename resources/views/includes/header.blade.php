@@ -1,15 +1,15 @@
 <header>
     <div class="container header-container">
         <div class="logo">
-            <div class="logo-icon"><a href=""><img src="img/Full Logo.svg" alt=""></a></div>
+            <div class="logo-icon"><a href="{{ route('home') }}"><img src="{{ asset('img/Full Logo.svg') }}" alt="СеверСтрой"></a></div>
         </div>
 
         <nav id="main-nav">
             <ul>
-                <li><a href="#about">О компании</a></li>
-                <li><a href="#catalog">Материалы</a></li>
-                <li><a href="#advantages">Преимущества</a></li>
-                <li><a href="#contacts">Контакты</a></li>
+                <li><a href="{{ route('home') }}#about">О компании</a></li>
+                <li><a href="{{ route('product') }}">Каталог</a></li>
+                <li><a href="{{ route('home') }}#pickup-points">Точки самовывоза</a></li>
+                <li><a href="{{ route('home') }}#contacts">Контакты</a></li>
             </ul>
         </nav>
 

@@ -1,3 +1,4 @@
+
 :root {
     --primary-color: #372e7f;
     --accent-color: #ff6b00;
@@ -135,9 +136,7 @@ header {
 }
 
 .logo-icon img{
-
     height: 60px;
-
 }
 
 .logo-text {
@@ -321,6 +320,7 @@ nav ul {
     nav.active ul li:nth-child(2) { transition-delay: 0.15s; }
     nav.active ul li:nth-child(3) { transition-delay: 0.2s; }
     nav.active ul li:nth-child(4) { transition-delay: 0.25s; }
+    nav.active ul li:nth-child(5) { transition-delay: 0.3s; }
 
     nav ul li a {
         display: block;
@@ -356,6 +356,11 @@ nav ul {
     }
 
     .header-actions .phone {
+        display: none;
+    }
+
+    /* Исправление для мобильной навигации - скрываем иконки соцсетей */
+    .header-actions .social-icons {
         display: none;
     }
 }
@@ -499,11 +504,11 @@ nav ul {
 
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 320px)); /* Ограничение максимума */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
     gap: 25px;
     position: relative;
     z-index: 2;
-    justify-content: center; /* Центрируем если карточек мало */
+    justify-content: center;
 }
 
 .catalog-card {
@@ -528,6 +533,7 @@ nav ul {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* ИСПРАВЛЕНИЕ ДЛЯ КАРТИНОК */
 .catalog-img {
     height: 200px;
     background: var(--light-gray);
@@ -537,11 +543,13 @@ nav ul {
     color: var(--text-gray);
     position: relative;
     overflow: hidden;
+
 }
 
 .catalog-img img {
-    object-fit: contain;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .catalog-content {
@@ -578,292 +586,6 @@ nav ul {
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
-}
-
-/* Преимущества */
-.advantages {
-    padding: 100px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.advantages-content {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-}
-
-.advantages-text {
-    transform: translateX(-100px);
-    opacity: 0;
-    transition: all 0.8s ease;
-    text-align: center;
-}
-
-.advantages-text.animate {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.advantages-text h2 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.advantages-text p {
-    font-size: 1.1rem;
-    color: var(--text-gray);
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.advantages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    transform: translateX(100px);
-    opacity: 0;
-    transition: all 0.8s ease;
-}
-
-.advantages-grid.animate {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.advantage-card {
-    background: var(--card-bg);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: all 0.4s ease;
-    border: var(--border);
-    text-align: center;
-}
-
-.advantage-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.advantage-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    color: white;
-    font-size: 25px;
-}
-
-.advantage-card h3 {
-    margin-bottom: 15px;
-    color: var(--text-dark);
-    font-size: 1.2rem;
-}
-
-.advantage-card p {
-    color: var(--text-gray);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-/* О компании */
-.about {
-    padding: 100px 0;
-    position: relative;
-    background: var(--dark-bg);
-    color: var(--text-light);
-}
-
-.about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-}
-
-.about-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-}
-
-.stat-item {
-    text-align: center;
-    padding: 25px 15px;
-    background: var(--dark-card);
-    border-radius: var(--border-radius);
-    transition: all 0.3s ease;
-    box-shadow: var(--dark-shadow);
-}
-
-.stat-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--accent-color);
-    margin-bottom: 10px;
-}
-
-.stat-text {
-    color: var(--text-light);
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-.about-text {
-    transform: translateX(-100px);
-    opacity: 0;
-    transition: all 0.8s ease;
-}
-
-.about-text.animate {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.about-text h2 {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.about-features {
-    margin-top: 30px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.feature-icon {
-    width: 24px;
-    height: 24px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    color: white;
-    font-size: 12px;
-    flex-shrink: 0;
-}
-
-.about-visual {
-    position: relative;
-    transform: translateX(100px);
-    opacity: 0;
-    transition: all 0.8s ease;
-}
-
-.about-visual.animate {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.visual-main {
-    background: var(--dark-card);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--dark-shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.visual-main h3 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--text-light);
-}
-
-.visual-main p {
-    opacity: 0.9;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-/* Исправленные элементы ценностей */
-.company-values {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-}
-
-.value-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-.value-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent-color);
-}
-
-.value-item i {
-    width: 40px;
-    height: 40px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    flex-shrink: 0;
-    font-size: 16px;
-}
-
-.value-content {
-    flex: 1;
-    min-width: 0; /* Предотвращает выход за границы */
-}
-
-.value-content h4 {
-    margin-bottom: 5px;
-    color: var(--text-light);
-    font-size: 1.1rem;
-    word-wrap: break-word;
-}
-
-.value-content p {
-    margin: 0;
-    opacity: 0.8;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    word-wrap: break-word;
 }
 
 /* Контакты */
@@ -972,6 +694,7 @@ nav ul {
     height: 100%;
     background: var(--light-gray);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--text-gray);
@@ -980,139 +703,123 @@ nav ul {
     padding: 20px;
 }
 
-/* Подвал */
+.map-placeholder-contact i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* ПЕРЕДЕЛАННЫЙ ПОДВАЛ */
 footer {
     background: var(--dark-bg);
     color: var(--text-light);
-    padding: 60px 0 0;
+    padding: 70px 0 30px;
 }
 
-.footer-main {
+.footer-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-bottom: 50px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 50px;
+    margin-bottom: 50px;
 }
 
-.footer-brand {
-    max-width: 100%;
+.footer-logo-section {
+    text-align: center;
 }
 
 .footer-logo {
-    display: flex;
-    align-items: center;
     margin-bottom: 20px;
 }
 
-
-.footer-logo .logo-text {
-    color: var(--text-light);
+.footer-logo img {
+    height: 50px;
+    filter: brightness(0) invert(1);
 }
 
-.footer-about {
-    margin-top: 15px;
+.footer-description {
     opacity: 0.8;
-    line-height: 1.7;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.footer-social {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
+.footer-contact-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: center;
 }
 
-.footer-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--dark-card);
-    border-radius: 50%;
-    color: var(--text-light);
-    transition: all 0.3s ease;
-}
-
-.footer-social a:hover {
-    background: var(--accent-color);
-    transform: translateY(-3px);
-}
-
-.footer-links h3,
-.footer-services h3,
-.footer-contact h3 {
+.footer-contact-info h3 {
     font-size: 1.2rem;
     margin-bottom: 20px;
     color: var(--text-light);
     position: relative;
+    display: inline-block;
 }
 
-.footer-links h3::after,
-.footer-services h3::after,
-.footer-contact h3::after {
+.footer-contact-info h3::after {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 40px;
     height: 3px;
     background: var(--accent-color);
     border-radius: 2px;
 }
 
-.footer-links ul,
-.footer-services ul {
-    list-style: none;
+.contact-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
-.footer-links li,
-.footer-services li {
-    margin-bottom: 10px;
+.contact-detail i {
+    color: var(--accent-color);
+    width: 20px;
+    font-size: 1.1rem;
 }
 
-.footer-links a,
-.footer-services a {
-    opacity: 0.8;
+.contact-detail span {
+    font-size: 0.95rem;
+}
+
+.footer-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.footer-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-light);
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
 }
 
-.footer-links a:hover,
-.footer-services a:hover {
-    opacity: 1;
-    color: var(--accent-color);
-    transform: translateX(5px);
-}
-
-.footer-links a::before,
-.footer-services a::before {
-    content: '›';
-    margin-right: 8px;
-    color: var(--accent-color);
-}
-
-.footer-contact p {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    opacity: 0.8;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.footer-contact i {
-    margin-right: 10px;
-    color: var(--accent-color);
-    width: 16px;
-    text-align: center;
-    flex-shrink: 0;
+.footer-social-links a:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
 }
 
 .footer-bottom {
-    padding: 25px 0;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
@@ -1128,36 +835,9 @@ footer {
         padding: 0 40px;
     }
 
-
-
     .catalog-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px;
-    }
-
-    .advantages-content {
-        flex-direction: row;
-        align-items: center;
-        gap: 80px;
-    }
-
-    .advantages-text {
-        text-align: left;
-        flex: 1;
-    }
-
-    .advantages-grid {
-        flex: 1;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .about-content {
-        flex-direction: row;
-        gap: 80px;
-    }
-
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .contacts-grid {
@@ -1165,9 +845,26 @@ footer {
         gap: 80px;
     }
 
-    .footer-main {
-        grid-template-columns: 2fr 1fr 1fr 1.5fr;
-        gap: 50px;
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .footer-logo-section {
+        text-align: left;
+    }
+
+    .footer-description {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .contact-detail {
+        justify-content: flex-start;
+    }
+
+    .footer-social-links {
+        justify-content: flex-start;
     }
 
     .catalog-card:nth-child(odd) {
@@ -1180,16 +877,6 @@ footer {
 
     .catalog-card:nth-child(even) {
         margin-bottom: -30px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .about-stats {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .company-values {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -1213,23 +900,24 @@ footer {
         margin: 0;
     }
 
-    /* Исправления для value-item на маленьких экранах */
-    .value-item {
+    /* Адаптация для точек самовывоза */
+    .pickup-content {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .pickup-intro h3 {
+        font-size: 1.5rem;
+    }
+
+    .feature-item {
         flex-direction: column;
         text-align: center;
-        gap: 12px;
+        gap: 10px;
     }
 
-    .value-item i {
-        align-self: center;
-    }
-
-    .value-content h4 {
-        font-size: 1rem;
-    }
-
-    .value-content p {
-        font-size: 0.85rem;
+    .feature-icon {
+        margin: 0 auto;
     }
 }
 
@@ -1246,22 +934,23 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .advantages-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
-
     .contact-social {
         justify-content: center;
     }
 
-    .footer-social {
-        justify-content: center;
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .footer-contact-info {
+        padding: 20px 15px;
     }
 }
+
 /* Стили для блока точек самовывоза */
 .pickup-points {
     padding: 80px 0;
@@ -1304,7 +993,7 @@ footer {
 .feature-icon {
     width: 50px;
     height: 50px;
-    background: #3498db;
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1379,7 +1068,7 @@ footer {
     width: 100%;
     height: 100%;
     background: #d1ecf1;
-    border: 2px solid #3498db;
+    border: 2px solid var(--primary-color);
     border-radius: 10px;
     position: relative;
 }
@@ -1402,7 +1091,7 @@ footer {
 .point-marker {
     width: 40px;
     height: 40px;
-    background: #e74c3c;
+    background: var(--accent-color);
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     display: flex;
@@ -1488,7 +1177,7 @@ footer {
 }
 
 .point-item:hover {
-    border-color: #3498db;
+    border-color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
@@ -1529,10 +1218,10 @@ footer {
 .point-details i {
     width: 16px;
     margin-right: 8px;
-    color: #3498db;
+    color: var(--primary-color);
 }
 
-/* Адаптивность */
+/* Адаптивность точек самовывоза */
 @media (max-width: 992px) {
     .pickup-content {
         grid-template-columns: 1fr;
