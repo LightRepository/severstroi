@@ -119,15 +119,6 @@
                 </div>
 
                 <div class="pickup-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Гибкий график</h4>
-                            <p>Работаем с 8:00 до 20:00 без выходных</p>
-                        </div>
-                    </div>
 
                     <div class="feature-item">
                         <div class="feature-icon">
@@ -272,7 +263,7 @@
 
                 <div class="contact-item">
                     <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
-                    <p>Удмуртская Республика, г Ижевск, ул Карла Маркса, д. 244, офис 24</p>
+                    <p>Удмуртская Республика, г Ижевск, ул Карла Маркса, <br> д. 244, офис 24</p>
                 </div>
 
                 <div class="contact-item">
@@ -296,8 +287,6 @@
                 <div class="map-contact">
                     <div class="map-placeholder-contact">
                         <i class="fas fa-map-marked-alt"></i>
-                        <p>Карта с расположением нашей компании</p>
-                        <p style="font-size: 0.9rem; margin-top: 10px;">г. Ижевск, ул. Карла Маркса, 244</p>
                     </div>
                 </div>
             </div>

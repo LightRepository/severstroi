@@ -711,9 +711,13 @@ nav ul {
 
 /* ПЕРЕДЕЛАННЫЙ ПОДВАЛ */
 footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: var(--dark-bg);
     color: var(--text-light);
-    padding: 70px 0 30px;
+    padding: 30px 0;
 }
 
 .footer-content {
@@ -818,7 +822,6 @@ footer {
 }
 
 .footer-bottom {
-    padding-top: 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
