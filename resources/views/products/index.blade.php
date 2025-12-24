@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -113,6 +114,46 @@
             0% { background-color: rgba(255, 107, 0, 0.3); }
             70% { background-color: rgba(255, 107, 0, 0.1); }
             100% { background-color: transparent; }
+        }
+
+        /* Стиль для уведомления о доставке */
+        .delivery-notice {
+            background-color: #fff8e6;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #8a6d3b;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .delivery-notice i {
+            color: #f39c12;
+            font-size: 1rem;
+            margin-top: 2px;
+        }
+
+        .delivery-notice strong {
+            color: #e67e22;
+        }
+
+        /* Стили для ошибок валидации */
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: #dc3545;
+        }
+
+        .form-control.success {
+            border-color: #28a745;
         }
     </style>
 </head>
@@ -261,7 +302,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h3 class="modal-title">Оформление заказа</h3>
-            <button class="close-modal">&times;</button>
+            <button class="close-modal" id="closeOrderModalBtn">&times;</button>
         </div>
         <form id="orderForm">
             <div class="form-group">
@@ -284,34 +325,51 @@
             </div>
 
             <div class="total-price">
-                <div class="total-price-label">Общая стоимость:</div>
+                <div class="total-price-label">Стоимость материалов:</div>
                 <div class="total-price-value" id="totalPrice">0 ₽</div>
+            </div>
+
+            <!-- Уведомление о доставке -->
+            <div class="delivery-notice">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Обратите внимание:</strong> В рассчитанную стоимость <strong>не включена доставка</strong>.
+                    Стоимость доставки рассчитывается индивидуально и зависит от адреса, объема заказа и выбранного транспорта.
+                    Точную стоимость доставки сообщит менеджер при подтверждении заказа.
+                </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label">ФИО *</label>
                 <input type="text" class="form-control" id="customerName" required>
-                <div class="error-message" id="customerNameError">Пожалуйста, введите ваше ФИО</div>
+                <div class="error-message" id="customerNameError">Пожалуйста, введите ваше ФИО (минимум 2 символа)</div>
             </div>
 
             <div class="form-group">
                 <label class="form-label">Телефон *</label>
-                <input type="tel" class="form-control" id="customerPhone" required>
+                <input type="tel" class="form-control" id="customerPhone" required placeholder="+7 (XXX) XXX-XX-XX">
                 <div class="error-message" id="customerPhoneError">Пожалуйста, введите корректный номер телефона</div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Адрес доставки</label>
-                <input type="text" class="form-control" id="deliveryAddress">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" id="customerEmail" required placeholder="example@mail.ru">
+                <div class="error-message" id="customerEmailError">Пожалуйста, введите корректный email адрес</div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Комментарий</label>
-                <textarea class="form-control" id="orderComment" rows="2" placeholder="Необязательно"></textarea>
+                <label class="form-label">Адрес доставки</label>
+                <input type="text" class="form-control" id="deliveryAddress" placeholder="Укажите адрес для расчета доставки">
+                <div class="small-text">Наш менеджер рассчитает точную стоимость доставки до вашего адреса</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Комментарий к заказу</label>
+                <textarea class="form-control" id="orderComment" rows="2" placeholder="Уточните детали заказа, удобное время доставки и т.д."></textarea>
             </div>
 
             <div class="form-submit">
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку на расчет</button>
             </div>
         </form>
     </div>
@@ -319,18 +377,22 @@
 
 <div class="modal" id="successModal">
     <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Заявка успешно отправлена!</h3>
+            <button class="close-modal" id="closeSuccessModalBtn">&times;</button>
+        </div>
         <div class="success-modal">
             <div class="success-icon">
                 <i class="fas fa-check"></i>
             </div>
-            <h3 class="success-title">Заказ успешно оформлен!</h3>
-            <p class="success-message">Ваш заказ принят в обработку. В ближайшее время с вами свяжется наш менеджер для подтверждения деталей.</p>
+            <p class="success-message">Ваша заявка принята в обработку. В ближайшее время с вами свяжется наш менеджер для подтверждения деталей заказа и расчета точной стоимости с учетом доставки.</p>
 
             <div class="success-details" id="successDetails">
+                <!-- Сюда будет вставлена информация о заказе -->
             </div>
 
             <div class="filter-buttons">
-                <button class="btn btn-primary" id="closeSuccessModal">Продолжить покупки</button>
+                <button class="btn btn-primary" id="continueShoppingBtn">Продолжить покупки</button>
             </div>
         </div>
     </div>
@@ -552,6 +614,8 @@
 
     // Текущий выбранный тип цены
     let currentPriceType = 'ton';
+    let currentProductPrice = 0;
+    let currentUnit = 'ton';
 
     // Получить параметры из URL
     function getUrlParams() {
@@ -589,6 +653,7 @@
         applyFilters();
         setupEventListeners();
         setupMobileFilters();
+        setupModalHandlers();
     });
 
     // Настройка мобильных фильтров
@@ -608,6 +673,36 @@
                 }
             });
         }
+    }
+
+    // Настройка обработчиков модальных окон
+    function setupModalHandlers() {
+        // Кнопки закрытия
+        document.getElementById('closeOrderModalBtn').addEventListener('click', function() {
+            document.getElementById('orderModal').classList.remove('active');
+        });
+
+        document.getElementById('closeSuccessModalBtn').addEventListener('click', function() {
+            document.getElementById('successModal').classList.remove('active');
+        });
+
+        // Кнопка "Продолжить покупки"
+        document.getElementById('continueShoppingBtn').addEventListener('click', function() {
+            document.getElementById('successModal').classList.remove('active');
+        });
+
+        // Закрытие по клику вне модального окна
+        window.addEventListener('click', function(event) {
+            const orderModal = document.getElementById('orderModal');
+            const successModal = document.getElementById('successModal');
+
+            if (event.target === orderModal) {
+                orderModal.classList.remove('active');
+            }
+            if (event.target === successModal) {
+                successModal.classList.remove('active');
+            }
+        });
     }
 
     // Рендеринг товаров (С ГРУППИРОВКОЙ ПО КАТЕГОРИЯМ)
@@ -681,7 +776,7 @@
 
                             <div class="product-price">${product.price[currentPriceType]} ₽/${currentPriceType === 'ton' ? 'т' : 'м³'}</div>
                             <div class="product-actions">
-                                <button class="btn btn-buy" data-product="${product.name}" data-price-ton="${product.price.ton}" data-price-cube="${product.price.cube}">Купить</button>
+                                <button class="btn btn-buy" data-id="${product.id}" data-name="${product.name}" data-price-ton="${product.price.ton}" data-price-cube="${product.price.cube}">Купить</button>
                             </div>
                         </div>
                     `;
@@ -690,7 +785,8 @@
             }
         });
 
-        setupModalEventListeners();
+        // Назначаем обработчики для кнопок "Купить"
+        setupBuyButtons();
     }
 
     function getCategoryName(cat) {
@@ -728,92 +824,77 @@
 
         document.getElementById('resetFilters').addEventListener('click', resetFilters);
         document.getElementById('clearAllFilters').addEventListener('click', resetFilters);
-
-        document.getElementById('closeSuccessModal').addEventListener('click', function() {
-            document.getElementById('successModal').classList.remove('active');
-            document.getElementById('orderForm').reset();
-        });
-
-        setupModalEventListeners();
     }
 
-    // Настройка обработчиков для модальных окон
-    function setupModalEventListeners() {
+    // Настройка кнопок "Купить"
+    function setupBuyButtons() {
         const buyButtons = document.querySelectorAll('.btn-buy');
-        const orderModal = document.getElementById('orderModal');
-        const closeButtons = document.querySelectorAll('.close-modal');
 
         buyButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const productName = this.getAttribute('data-product');
+                const productName = this.getAttribute('data-name');
                 const priceTon = this.getAttribute('data-price-ton');
                 const priceCube = this.getAttribute('data-price-cube');
 
                 document.getElementById('selectedProduct').value = productName;
-                document.getElementById('selectedProduct').setAttribute('data-price-ton', priceTon);
-                document.getElementById('selectedProduct').setAttribute('data-price-cube', priceCube);
+                currentProductPrice = parseFloat(priceTon);
+                currentUnit = 'ton';
 
-                const initialUnit = document.getElementById('unit').value;
-                const initialPrice = initialUnit === 'ton' ? priceTon : priceCube;
-                document.getElementById('selectedProduct').setAttribute('data-current-price', initialPrice);
-                document.getElementById('selectedProduct').setAttribute('data-current-unit', initialUnit);
+                // Сбрасываем форму
+                resetOrderForm();
 
+                // Устанавливаем начальную цену
                 updateTotalPrice();
-                orderModal.classList.add('active');
+
+                // Показываем модальное окно
+                document.getElementById('orderModal').classList.add('active');
             });
         });
+    }
 
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                orderModal.classList.remove('active');
-            });
+    // Сброс формы заказа
+    function resetOrderForm() {
+        document.getElementById('orderForm').reset();
+        document.getElementById('quantity').value = 1;
+        document.getElementById('unit').value = 'ton';
+
+        // Скрываем все сообщения об ошибках
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.style.display = 'none';
         });
 
-        window.addEventListener('click', function(event) {
-            if (event.target === orderModal) {
-                orderModal.classList.remove('active');
-            }
-            if (event.target === document.getElementById('successModal')) {
-                document.getElementById('successModal').classList.remove('active');
-            }
+        // Убираем классы ошибок/успеха
+        document.querySelectorAll('.form-control').forEach(el => {
+            el.classList.remove('error', 'success');
         });
+    }
 
-        // Обработчики для расчета стоимости
+    // Обработчики для расчета стоимости
+    document.addEventListener('DOMContentLoaded', function() {
         const qtyInput = document.getElementById('quantity');
-        if (!qtyInput.getAttribute('data-listener')) {
-            qtyInput.addEventListener('input', updateTotalPrice);
-            qtyInput.setAttribute('data-listener', 'true');
-        }
-
         const unitSelect = document.getElementById('unit');
-        if (!unitSelect.getAttribute('data-listener')) {
-            unitSelect.addEventListener('change', function() {
-                updateProductPrice('order');
-                updateTotalPrice();
-            });
-            unitSelect.setAttribute('data-listener', 'true');
-        }
 
+        qtyInput.addEventListener('input', function() {
+            updateTotalPrice();
+        });
+
+        unitSelect.addEventListener('change', function() {
+            currentUnit = this.value;
+            // Если нужно пересчитать цену при смене единицы измерения
+            updateTotalPrice();
+        });
+
+        // Валидация формы
         setupFormValidation();
-    }
-
-    function updateProductPrice(formType) {
-        if (formType === 'order') {
-            const unit = document.getElementById('unit').value;
-            const priceTon = document.getElementById('selectedProduct').getAttribute('data-price-ton');
-            const priceCube = document.getElementById('selectedProduct').getAttribute('data-price-cube');
-            const currentPrice = unit === 'ton' ? priceTon : priceCube;
-
-            document.getElementById('selectedProduct').setAttribute('data-current-price', currentPrice);
-            document.getElementById('selectedProduct').setAttribute('data-current-unit', unit);
-        }
-    }
+    });
 
     function updateTotalPrice() {
-        const currentPrice = parseFloat(document.getElementById('selectedProduct').getAttribute('data-current-price')) || 0;
         const quantity = parseFloat(document.getElementById('quantity').value) || 0;
-        const unit = document.getElementById('unit').value;
-        const total = currentPrice * quantity;
+        let price = currentProductPrice;
+
+        // Если выбраны кубы, нужно было бы конвертировать цену
+        // Для простоты оставим цену за тонну
+        const total = price * quantity;
 
         document.getElementById('totalPrice').textContent = `${total.toFixed(0)} ₽`;
     }
@@ -821,25 +902,116 @@
     // Валидация форм
     function setupFormValidation() {
         const orderForm = document.getElementById('orderForm');
-        const newOrderForm = orderForm.cloneNode(true);
-        orderForm.parentNode.replaceChild(newOrderForm, orderForm);
 
-        newOrderForm.addEventListener('submit', function(e) {
+        // Реальная валидация при вводе
+        const customerName = document.getElementById('customerName');
+        const customerPhone = document.getElementById('customerPhone');
+        const customerEmail = document.getElementById('customerEmail');
+
+        // Валидация ФИО
+        customerName.addEventListener('input', function() {
+            validateField(this, validateName);
+        });
+
+        // Валидация телефона
+        customerPhone.addEventListener('input', function() {
+            validateField(this, validatePhone);
+        });
+
+        // Валидация email
+        customerEmail.addEventListener('input', function() {
+            validateField(this, validateEmail);
+        });
+
+        // Отправка формы
+        orderForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if(document.getElementById('customerName').value && document.getElementById('customerPhone').value) {
+
+            // Проверяем все поля
+            const isNameValid = validateField(customerName, validateName);
+            const isPhoneValid = validateField(customerPhone, validatePhone);
+            const isEmailValid = validateField(customerEmail, validateEmail);
+
+            if (isNameValid && isPhoneValid && isEmailValid) {
                 submitOrderForm();
             }
         });
     }
 
-    // Отправка форм (имитация)
+    // Валидация поля
+    function validateField(field, validationFunction) {
+        const errorElement = document.getElementById(field.id + 'Error');
+        const isValid = validationFunction(field.value);
+
+        if (isValid) {
+            field.classList.remove('error');
+            field.classList.add('success');
+            errorElement.style.display = 'none';
+        } else {
+            field.classList.remove('success');
+            field.classList.add('error');
+            errorElement.style.display = 'block';
+        }
+
+        return isValid;
+    }
+
+    // Валидация ФИО
+    function validateName(name) {
+        return name && name.trim().length >= 2;
+    }
+
+    // Валидация телефона (российский формат)
+    function validatePhone(phone) {
+        // Упрощенная проверка российского номера
+        const phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+        return phone && phoneRegex.test(phone.replace(/\s+/g, ''));
+    }
+
+    // Валидация email
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return email && emailRegex.test(email);
+    }
+
+    // Отправка формы (имитация)
     function submitOrderForm() {
+        const productName = document.getElementById('selectedProduct').value;
+        const quantity = document.getElementById('quantity').value;
+        const unit = document.getElementById('unit').value;
+        const totalPrice = document.getElementById('totalPrice').textContent;
+        const customerName = document.getElementById('customerName').value;
+        const customerPhone = document.getElementById('customerPhone').value;
+        const customerEmail = document.getElementById('customerEmail').value;
+        const deliveryAddress = document.getElementById('deliveryAddress').value;
+        const orderComment = document.getElementById('orderComment').value;
+
+        // Скрываем окно заказа
         document.getElementById('orderModal').classList.remove('active');
+
+        // Показываем окно успеха
         document.getElementById('successModal').classList.add('active');
 
-        const prod = document.getElementById('selectedProduct').value;
-        const price = document.getElementById('totalPrice').textContent;
-        document.getElementById('successDetails').innerHTML = `<p>Товар: ${prod}</p><p>Итого: ${price}</p>`;
+        // Формируем детали заказа для отображения
+        document.getElementById('successDetails').innerHTML = `
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                <h4 style="margin-bottom: 10px; color: var(--primary-color);">Детали заявки:</h4>
+                <p><strong>Товар:</strong> ${productName}</p>
+                <p><strong>Количество:</strong> ${quantity} ${unit === 'ton' ? 'тонн' : 'м³'}</p>
+                <p><strong>Стоимость материалов:</strong> ${totalPrice}</p>
+                <p><strong>ФИО:</strong> ${customerName}</p>
+                <p><strong>Телефон:</strong> ${customerPhone}</p>
+                <p><strong>Email:</strong> ${customerEmail}</p>
+                ${deliveryAddress ? `<p><strong>Адрес доставки:</strong> ${deliveryAddress}</p>` : ''}
+                ${orderComment ? `<p><strong>Комментарий:</strong> ${orderComment}</p>` : ''}
+                <p style="margin-top: 10px; color: var(--accent-color); font-weight: 600;">
+                    *Стоимость доставки будет рассчитана менеджером и сообщена дополнительно
+                </p>
+            </div>
+        `;
+
+        // Сбрасываем форму
+        resetOrderForm();
     }
 
     // Функции фильтрации
