@@ -2159,3 +2159,77 @@ body.dark-mode .footer-services a,
 body.dark-mode .footer-contact p {
     opacity: 0.9;
 }
+
+/* Исправления для герой-секции на мобильных устройствах */
+@media (max-width: 767px) {
+    .hero {
+        text-align: center;
+        justify-content: center;
+        padding-top: 70px; /* Учитываем высоту шапки */
+    }
+
+    .hero-content {
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.2;
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.4;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
+
+/* Для планшетов */
+@media (min-width: 768px) and (max-width: 992px) {
+    .hero-content {
+        padding: 0 40px;
+        text-align: left;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}
