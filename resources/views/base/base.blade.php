@@ -247,6 +247,7 @@
 </section>
 
 <!-- Контакты -->
+<!-- Контакты -->
 <section class="contacts" id="contacts">
     <div class="container">
         <div class="section-title">
@@ -286,7 +287,16 @@
             <div class="map-container-contact">
                 <div class="map-contact">
                     <div class="map-placeholder-contact">
-                        <i class="fas fa-map-marked-alt"></i>
+                        <!-- Обновленный iframe с адаптивными параметрами -->
+                        <iframe
+                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A21012e5d30341c8d9c7dd3a3e4b1bb12345e95be85589465409fb38ce8889ccd&amp;source=constructor"
+                            width="100%"
+                            height="100%"
+                            frameborder="0"
+                            style="border:0;"
+                            allowfullscreen="true"
+                            loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -298,5 +308,6 @@
 @include("includes.footer")
 
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/base.js') }}"></script>
 </body>
 </html>
