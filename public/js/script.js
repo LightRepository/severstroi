@@ -36,6 +36,17 @@ function animateOnScroll() {
 
     const windowHeight = window.innerHeight;
 
+    const transportContent = document.querySelector('.transport-content');
+
+
+
+    if (transportContent) {
+        const transportPosition = transportContent.getBoundingClientRect().top;
+        if (transportPosition < windowHeight - 100) {
+            transportContent.classList.add('animate');
+        }
+    }
+
     cards.forEach(card => {
         const cardPosition = card.getBoundingClientRect().top;
 
@@ -133,4 +144,171 @@ document.addEventListener('DOMContentLoaded', function() {
             activatePoint(pointId);
         });
     });
+});
+
+// Инициализация карты для точек самовывоза
+function initPickupMap() {
+    if (typeof ymaps === 'undefined') {
+        // Загружаем API Яндекс.Карт, если ещё не загружен
+        const script = document.createElement('script');
+        script.src = 'https://api-maps.yandex.ru/2.1/?apikey=7317a0b1-4c54-4ccc-9d89-0f5edf9534ed&lang=ru_RU';
+        script.type = 'text/javascript';
+        script.onload = () => {
+            ymaps.ready(createPickupMap);
+        };
+        document.head.appendChild(script);
+    } else {
+        ymaps.ready(createPickupMap);
+    }
+}
+
+function createPickupMap() {
+    const mapContainer = document.getElementById('map-pickup');
+    if (!mapContainer) return;
+
+    // Центр карты (Удмуртия)
+    const center = [56.5, 53.5];
+    const map = new ymaps.Map('map-pickup', {
+        center: center,
+        zoom: 8,
+        controls: ['zoomControl', 'fullscreenControl']
+    });
+
+    // Список точек с координатами и типом
+    const points = [
+        { coords: [56.747004, 54.022544], name: 'Волковское месторождение (Карьер «Лагуна»)', type: 'river' },
+        { coords: [56.841602, 53.852465], name: 'Сидоровы горы', type: 'river' },
+        { coords: [56.521011, 53.794479], name: 'Ярамаска', type: 'river' },
+        { coords: [55.996848, 53.682743], name: 'Каракулино', type: 'river' },
+        { coords: [56.75, 53.60], name: 'Щебень разных фракций', type: 'crushed' },
+        { coords: [56.95, 54.00], name: 'Пойма 34', type: 'crushed' }
+    ];
+
+    // Цвета меток в зависимости от типа
+    const iconColors = {
+        river: 'blue',
+        crushed: 'orange'
+    };
+    pointItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            if (index < points.length) {
+                map.setCenter(points[index].coords, 10, { duration: 300 });
+
+                // Плавная прокрутка к блоку карты
+                const mapContainer = document.getElementById('map-pickup');
+                if (mapContainer) {
+                    mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    });
+    points.forEach(point => {
+        const placemark = new ymaps.Placemark(point.coords, {
+            hintContent: point.name,
+            balloonContent: `<strong>${point.name}</strong><br>Тип: ${point.type === 'river' ? 'Речные материалы' : 'Щебень'}`
+        }, {
+            preset: `islands#${iconColors[point.type]}Icon`
+        });
+        map.geoObjects.add(placemark);
+    });
+
+    // Клик по пункту списка центрирует карту на соответствующей точке
+    const pointItems = document.querySelectorAll('.point-item');
+    pointItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            if (index < points.length) {
+                map.setCenter(points[index].coords, 10, { duration: 300 });
+            }
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initPickupMap();
+});
+
+// Модальное окно быстрой заявки
+document.addEventListener('DOMContentLoaded', function() {
+    const modalOverlay = document.getElementById('request-modal-overlay');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modal = document.getElementById('request-modal');
+    const form = document.getElementById('quick-request-form');
+
+    // Проверяем, показывали ли окно в этой сессии
+    if (!sessionStorage.getItem('modalShown')) {
+        // Небольшая задержка, чтобы не вылетать сразу
+        setTimeout(() => {
+            showModal();
+        }, 1500); // через 1.5 секунды после загрузки
+    }
+
+    // Функция показа
+    function showModal() {
+        modalOverlay.style.display = 'flex';
+        // Небольшой таймаут для запуска CSS-перехода
+        setTimeout(() => {
+            modalOverlay.classList.add('active');
+        }, 10);
+        sessionStorage.setItem('modalShown', 'true');
+    }
+
+    // Функция скрытия
+    function hideModal() {
+        modalOverlay.classList.remove('active');
+        setTimeout(() => {
+            modalOverlay.style.display = 'none';
+        }, 300); // время совпадает с transition
+    }
+
+    // Закрытие по крестику
+    modalCloseBtn.addEventListener('click', hideModal);
+
+    // Закрытие по клику на оверлей (но не на само окно)
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+            hideModal();
+        }
+    });
+
+    // Обработка отправки формы через AJAX
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+
+            fetch('/quick-request', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Показываем сообщение об успехе
+                        form.innerHTML = `<div class="success-message">${data.message || 'Заявка отправлена! Мы свяжемся с вами.'}</div>`;
+                        setTimeout(() => {
+                            hideModal();
+                        }, 2000);
+                    } else {
+                        alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка при отправке. Проверьте соединение.');
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
+        });
+    }
 });

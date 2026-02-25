@@ -358,7 +358,7 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Адрес доставки</label>
+                <label class="form-label">Адрес / Место доставки</label>
                 <input type="text" class="form-control" id="deliveryAddress" placeholder="Укажите адрес для расчета доставки">
                 <div class="small-text">Наш менеджер рассчитает точную стоимость доставки до вашего адреса</div>
             </div>

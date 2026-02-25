@@ -874,18 +874,6 @@ footer {
     .contact-detail {
         justify-content: flex-start;
     }
-
-    .catalog-card:nth-child(odd) {
-        margin-top: -30px;
-    }
-    .catalog-card:nth-child(5) {
-        margin-bottom: -30px;
-        margin-top: 30px;
-    }
-
-    .catalog-card:nth-child(even) {
-        margin-bottom: -30px;
-    }
 }
 
 @media (max-width: 767px) {
@@ -966,7 +954,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .pickup-intro {
@@ -2233,3 +2221,276 @@ body.dark-mode .footer-contact p {
         justify-content: flex-start;
     }
 }
+
+
+/* Транспортные логистические услуги */
+.transport {
+    padding: 80px 0;
+    background: var(--light-bg);
+    position: relative;
+}
+
+.transport-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.transport-description {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.transport-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.transport-features .feature-item {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.transport-features .feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.transport-features .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.transport-features .feature-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.transport-features .feature-content {
+    flex: 1;
+}
+
+.transport-features .feature-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.transport-features .feature-content p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Анимация появления при скролле */
+.transport-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.transport-content.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .transport {
+        padding: 60px 0;
+    }
+
+    .transport-features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .transport-features .feature-item {
+        padding: 20px;
+    }
+
+    .transport-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .transport-features .feature-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .transport-features .feature-icon {
+        margin-bottom: 5px;
+    }
+
+    .transport-features .feature-content h4 {
+        font-size: 1rem;
+    }
+
+    .transport-features .feature-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Модальное окно быстрой заявки */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+}
+
+.modal-container {
+    background: white;
+    border-radius: var(--border-radius);
+    max-width: 450px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-gray);
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--accent-color);
+}
+
+.modal-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.modal-header h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.modal-header p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+.modal-form .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.modal-form .required {
+    color: var(--accent-color);
+}
+
+.modal-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.modal-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(55, 46, 127, 0.1);
+}
+
+.modal-form small {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 480px) {
+    .modal-container {
+        padding: 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 1.5rem;
+    }
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
