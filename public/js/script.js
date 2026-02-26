@@ -1,4 +1,6 @@
-// Мобильное меню
+// script.js – оптимизированная версия
+
+// ==================== МОБИЛЬНОЕ МЕНЮ ====================
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 const mainNav = document.getElementById('main-nav');
 const menuOverlay = document.getElementById('menu-overlay');
@@ -29,79 +31,35 @@ navLinks.forEach(link => {
     });
 });
 
-// Анимация появления элементов при скролле
-function animateOnScroll() {
-    const windowHeight = window.innerHeight;
+// ==================== АНИМАЦИЯ ПРИ СКРОЛЛЕ (Intersection Observer) ====================
+const animatedElements = [
+    ...document.querySelectorAll('.catalog-card'),
+    ...document.querySelectorAll('.contact-info'),
+    ...document.querySelectorAll('.transport-content'),
+    ...document.querySelectorAll('.footer-brand'),
+    ...document.querySelectorAll('.footer-links'),
+    ...document.querySelectorAll('.footer-services'),
+    ...document.querySelectorAll('.footer-contact'),
+    ...document.querySelectorAll('.footer-bottom')
+];
 
-    const cards = document.querySelectorAll('.catalog-card');
-    cards.forEach(card => {
-        const cardPosition = card.getBoundingClientRect().top;
-        if (cardPosition < windowHeight - 100) {
-            card.classList.add('animate');
-        }
+if (animatedElements.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target); // больше не наблюдаем
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px' // небольшой отступ для раннего срабатывания
     });
 
-    const advantagesText = document.querySelector('.advantages-text');
-    if (advantagesText) {
-        const advantagesTextPosition = advantagesText.getBoundingClientRect().top;
-        if (advantagesTextPosition < windowHeight - 100) {
-            advantagesText.classList.add('animate');
-        }
-    }
-
-    const advantagesGrid = document.querySelector('.advantages-grid');
-    if (advantagesGrid) {
-        const advantagesGridPosition = advantagesGrid.getBoundingClientRect().top;
-        if (advantagesGridPosition < windowHeight - 100) {
-            advantagesGrid.classList.add('animate');
-        }
-    }
-
-    const aboutText = document.querySelector('.about-text');
-    if (aboutText) {
-        const aboutTextPosition = aboutText.getBoundingClientRect().top;
-        if (aboutTextPosition < windowHeight - 100) {
-            aboutText.classList.add('animate');
-        }
-    }
-
-    const aboutVisual = document.querySelector('.about-visual');
-    if (aboutVisual) {
-        const aboutVisualPosition = aboutVisual.getBoundingClientRect().top;
-        if (aboutVisualPosition < windowHeight - 100) {
-            aboutVisual.classList.add('animate');
-        }
-    }
-
-    const contactInfo = document.querySelector('.contact-info');
-    if (contactInfo) {
-        const contactInfoPosition = contactInfo.getBoundingClientRect().top;
-        if (contactInfoPosition < windowHeight - 100) {
-            contactInfo.classList.add('animate');
-        }
-    }
-
-    const mapContainer = document.querySelector('.map-container');
-    if (mapContainer) {
-        const mapContainerPosition = mapContainer.getBoundingClientRect().top;
-        if (mapContainerPosition < windowHeight - 100) {
-            mapContainer.classList.add('animate');
-        }
-    }
-
-    const transportContent = document.querySelector('.transport-content');
-    if (transportContent) {
-        const transportPosition = transportContent.getBoundingClientRect().top;
-        if (transportPosition < windowHeight - 100) {
-            transportContent.classList.add('animate');
-        }
-    }
+    animatedElements.forEach(el => observer.observe(el));
 }
 
-window.addEventListener('load', animateOnScroll);
-window.addEventListener('scroll', animateOnScroll);
-
-// Взаимодействие между картой и списком точек
+// ==================== ВЗАИМОДЕЙСТВИЕ МЕЖДУ КАРТОЙ И СПИСКОМ ТОЧЕК ====================
 document.addEventListener('DOMContentLoaded', function() {
     const mapPoints = document.querySelectorAll('.map-point');
     const listPoints = document.querySelectorAll('.point-item');
@@ -134,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Инициализация карты для точек самовывоза
+// ==================== ЯНДЕКС.КАРТА ДЛЯ ТОЧЕК САМОВЫВОЗА ====================
 function initPickupMap() {
     const mapContainer = document.getElementById('map-pickup');
     if (!mapContainer) return;
@@ -200,7 +158,7 @@ function createPickupMap() {
 
 document.addEventListener('DOMContentLoaded', initPickupMap);
 
-// Модальное окно быстрой заявки
+// ==================== МОДАЛЬНОЕ ОКНО БЫСТРОЙ ЗАЯВКИ ====================
 document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay = document.getElementById('request-modal-overlay');
     const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -276,4 +234,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         });
     }
+});
+
+// ==================== ОПТИМИЗАЦИЯ RESIZE (DEBOUNCE) ====================
+// Добавляем debounce для адаптации карты контактов (функция определена в base.js, но мы можем вызвать её с задержкой)
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        // Если функция adaptContactMap определена в base.js, вызываем её
+        if (typeof adaptContactMap === 'function') {
+            adaptContactMap();
+        }
+    }, 150);
 });
