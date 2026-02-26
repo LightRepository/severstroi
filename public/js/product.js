@@ -648,20 +648,20 @@ function setupBuyButtonsDelegation() {
         const priceTon = buyButton.getAttribute('data-price-ton');
         const priceCube = buyButton.getAttribute('data-price-cube');
 
-        const selectedProduct = document.getElementById('selectedProduct');
-        if (selectedProduct) selectedProduct.value = productName;
-
         // Сохраняем цены для текущего товара
         currentPriceTon = parseFloat(priceTon) || 0;
         currentPriceCube = parseFloat(priceCube) || 0;
-        // По умолчанию показываем цену за тонну
         currentUnit = 'ton';
         currentProductPrice = currentPriceTon;
 
-        // Сбрасываем форму и обновляем цену
+        // СНАЧАЛА сбрасываем форму (очищаем предыдущие данные)
         resetOrderForm();
 
-        // Устанавливаем селект единиц в значение 'ton' (уже сделано в resetOrderForm)
+        // ПОТОМ устанавливаем название товара
+        const selectedProduct = document.getElementById('selectedProduct');
+        if (selectedProduct) selectedProduct.value = productName;
+
+        // Обновляем отображение цены
         updateTotalPrice();
 
         const orderModal = document.getElementById('orderModal');
