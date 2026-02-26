@@ -4,57 +4,44 @@ const mainNav = document.getElementById('main-nav');
 const menuOverlay = document.getElementById('menu-overlay');
 
 function toggleMenu() {
+    if (!mobileMenuToggle || !mainNav || !menuOverlay) return;
     mobileMenuToggle.classList.toggle('active');
     mainNav.classList.toggle('active');
     menuOverlay.classList.toggle('active');
     document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
 }
 
-mobileMenuToggle.addEventListener('click', toggleMenu);
-menuOverlay.addEventListener('click', toggleMenu);
+if (mobileMenuToggle && mainNav && menuOverlay) {
+    mobileMenuToggle.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+}
 
 // Закрытие меню при клике на ссылку
 const navLinks = document.querySelectorAll('nav a');
 navLinks.forEach(link => {
     link.addEventListener('click', function() {
-        mobileMenuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        if (mobileMenuToggle && mainNav && menuOverlay) {
+            mobileMenuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 });
 
 // Анимация появления элементов при скролле
 function animateOnScroll() {
-    const cards = document.querySelectorAll('.catalog-card');
-    const advantagesText = document.querySelector('.advantages-text');
-    const advantagesGrid = document.querySelector('.advantages-grid');
-    const aboutText = document.querySelector('.about-text');
-    const aboutVisual = document.querySelector('.about-visual');
-    const contactInfo = document.querySelector('.contact-info');
-    const mapContainer = document.querySelector('.map-container');
-
     const windowHeight = window.innerHeight;
 
-    const transportContent = document.querySelector('.transport-content');
-
-
-
-    if (transportContent) {
-        const transportPosition = transportContent.getBoundingClientRect().top;
-        if (transportPosition < windowHeight - 100) {
-            transportContent.classList.add('animate');
-        }
-    }
-
+    const cards = document.querySelectorAll('.catalog-card');
     cards.forEach(card => {
         const cardPosition = card.getBoundingClientRect().top;
-
         if (cardPosition < windowHeight - 100) {
             card.classList.add('animate');
         }
     });
 
+    const advantagesText = document.querySelector('.advantages-text');
     if (advantagesText) {
         const advantagesTextPosition = advantagesText.getBoundingClientRect().top;
         if (advantagesTextPosition < windowHeight - 100) {
@@ -62,6 +49,7 @@ function animateOnScroll() {
         }
     }
 
+    const advantagesGrid = document.querySelector('.advantages-grid');
     if (advantagesGrid) {
         const advantagesGridPosition = advantagesGrid.getBoundingClientRect().top;
         if (advantagesGridPosition < windowHeight - 100) {
@@ -69,6 +57,7 @@ function animateOnScroll() {
         }
     }
 
+    const aboutText = document.querySelector('.about-text');
     if (aboutText) {
         const aboutTextPosition = aboutText.getBoundingClientRect().top;
         if (aboutTextPosition < windowHeight - 100) {
@@ -76,6 +65,7 @@ function animateOnScroll() {
         }
     }
 
+    const aboutVisual = document.querySelector('.about-visual');
     if (aboutVisual) {
         const aboutVisualPosition = aboutVisual.getBoundingClientRect().top;
         if (aboutVisualPosition < windowHeight - 100) {
@@ -83,6 +73,7 @@ function animateOnScroll() {
         }
     }
 
+    const contactInfo = document.querySelector('.contact-info');
     if (contactInfo) {
         const contactInfoPosition = contactInfo.getBoundingClientRect().top;
         if (contactInfoPosition < windowHeight - 100) {
@@ -90,38 +81,37 @@ function animateOnScroll() {
         }
     }
 
+    const mapContainer = document.querySelector('.map-container');
     if (mapContainer) {
         const mapContainerPosition = mapContainer.getBoundingClientRect().top;
         if (mapContainerPosition < windowHeight - 100) {
             mapContainer.classList.add('animate');
         }
     }
+
+    const transportContent = document.querySelector('.transport-content');
+    if (transportContent) {
+        const transportPosition = transportContent.getBoundingClientRect().top;
+        if (transportPosition < windowHeight - 100) {
+            transportContent.classList.add('animate');
+        }
+    }
 }
 
-// Инициализация при загрузке страницы
-window.addEventListener('load', function() {
-    animateOnScroll();
-});
-
-// Обработка скролла для анимации элементов
+window.addEventListener('load', animateOnScroll);
 window.addEventListener('scroll', animateOnScroll);
+
 // Взаимодействие между картой и списком точек
 document.addEventListener('DOMContentLoaded', function() {
-    // Получаем все точки на карте и в списке
     const mapPoints = document.querySelectorAll('.map-point');
     const listPoints = document.querySelectorAll('.point-item');
 
-    // Функция для активации точки
-    function activatePoint(pointId) {
-        // Деактивируем все точки
-        mapPoints.forEach(point => {
-            point.classList.remove('active');
-        });
-        listPoints.forEach(point => {
-            point.classList.remove('active');
-        });
+    if (mapPoints.length === 0 || listPoints.length === 0) return;
 
-        // Активируем выбранную точку
+    function activatePoint(pointId) {
+        mapPoints.forEach(point => point.classList.remove('active'));
+        listPoints.forEach(point => point.classList.remove('active'));
+
         const selectedMapPoint = document.querySelector(`.map-point[data-point="${pointId}"]`);
         const selectedListItem = document.querySelector(`.point-item[data-point="${pointId}"]`);
 
@@ -129,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedListItem) selectedListItem.classList.add('active');
     }
 
-    // Добавляем обработчики для точек на карте
     mapPoints.forEach(point => {
         point.addEventListener('click', function() {
             const pointId = this.getAttribute('data-point');
@@ -137,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Добавляем обработчики для точек в списке
     listPoints.forEach(point => {
         point.addEventListener('click', function() {
             const pointId = this.getAttribute('data-point');
@@ -148,8 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Инициализация карты для точек самовывоза
 function initPickupMap() {
+    const mapContainer = document.getElementById('map-pickup');
+    if (!mapContainer) return;
+
     if (typeof ymaps === 'undefined') {
-        // Загружаем API Яндекс.Карт, если ещё не загружен
         const script = document.createElement('script');
         script.src = 'https://api-maps.yandex.ru/2.1/?apikey=7317a0b1-4c54-4ccc-9d89-0f5edf9534ed&lang=ru_RU';
         script.type = 'text/javascript';
@@ -166,7 +156,6 @@ function createPickupMap() {
     const mapContainer = document.getElementById('map-pickup');
     if (!mapContainer) return;
 
-    // Центр карты (Удмуртия)
     const center = [56.5, 53.5];
     const map = new ymaps.Map('map-pickup', {
         center: center,
@@ -174,7 +163,6 @@ function createPickupMap() {
         controls: ['zoomControl']
     });
 
-    // Список точек с координатами и типом
     const points = [
         { coords: [56.747004, 54.022544], name: 'Волковское месторождение (Карьер «Лагуна»)', type: 'river' },
         { coords: [56.841602, 53.852465], name: 'Сидоровы горы', type: 'river' },
@@ -184,11 +172,7 @@ function createPickupMap() {
         { coords: [56.95, 54.00], name: 'Пойма 34', type: 'crushed' }
     ];
 
-    // Цвета меток в зависимости от типа
-    const iconColors = {
-        river: 'blue',
-        crushed: 'orange'
-    };
+    const iconColors = { river: 'blue', crushed: 'orange' };
 
     points.forEach(point => {
         const placemark = new ymaps.Placemark(point.coords, {
@@ -200,13 +184,11 @@ function createPickupMap() {
         map.geoObjects.add(placemark);
     });
 
-    // Клик по пункту списка центрирует карту на соответствующей точке
     const pointItems = document.querySelectorAll('.point-item');
     pointItems.forEach((item, index) => {
         item.addEventListener('click', function() {
             if (index < points.length) {
                 map.setCenter(points[index].coords, 10, { duration: 300 });
-                // прокрутка к карте
                 const mapContainer = document.getElementById('map-pickup');
                 if (mapContainer) {
                     mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -214,64 +196,55 @@ function createPickupMap() {
             }
         });
     });
-
-
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initPickupMap();
-});
+document.addEventListener('DOMContentLoaded', initPickupMap);
 
 // Модальное окно быстрой заявки
 document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay = document.getElementById('request-modal-overlay');
     const modalCloseBtn = document.getElementById('modal-close-btn');
-    const modal = document.getElementById('request-modal');
     const form = document.getElementById('quick-request-form');
 
-    // Проверяем, показывали ли окно в этой сессии
-    if (!sessionStorage.getItem('modalShown')) {
-        // Небольшая задержка, чтобы не вылетать сразу
-        setTimeout(() => {
-            showModal();
-        }, 1500); // через 1.5 секунды после загрузки
-    }
+    if (!modalOverlay) return;
 
-    // Функция показа
     function showModal() {
         modalOverlay.style.display = 'flex';
-        // Небольшой таймаут для запуска CSS-перехода
         setTimeout(() => {
             modalOverlay.classList.add('active');
         }, 10);
         sessionStorage.setItem('modalShown', 'true');
     }
 
-    // Функция скрытия
     function hideModal() {
         modalOverlay.classList.remove('active');
         setTimeout(() => {
             modalOverlay.style.display = 'none';
-        }, 300); // время совпадает с transition
+        }, 300);
     }
 
-    // Закрытие по крестику
-    modalCloseBtn.addEventListener('click', hideModal);
+    if (!sessionStorage.getItem('modalShown')) {
+        setTimeout(showModal, 1500);
+    }
 
-    // Закрытие по клику на оверлей (но не на само окно)
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', hideModal);
+    }
+
     modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) {
             hideModal();
         }
     });
 
-    // Обработка отправки формы через AJAX
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const formData = new FormData(form);
             const submitBtn = form.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
             submitBtn.textContent = 'Отправка...';
@@ -279,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch('/quick-request', {
                 method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]')?.value || '',
                     'Accept': 'application/json'
                 },
                 body: formData
@@ -287,11 +260,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Показываем сообщение об успехе
                         form.innerHTML = `<div class="success-message">${data.message || 'Заявка отправлена! Мы свяжемся с вами.'}</div>`;
-                        setTimeout(() => {
-                            hideModal();
-                        }, 2000);
+                        setTimeout(hideModal, 2000);
                     } else {
                         alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
                     }
