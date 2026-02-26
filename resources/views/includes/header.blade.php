@@ -6,7 +6,7 @@
 
         <nav id="main-nav">
             <ul>
-                <li><a href="{{ route('home') }}#about">О компании</a></li>
+                <li><a href="{{ route('home') }}#transport">Транспортные услуги</a></li>
                 <li><a href="{{ route('product') }}">Каталог</a></li>
                 <li><a href="{{ route('home') }}#pickup-points">Точки самовывоза</a></li>
                 <li><a href="{{ route('home') }}#contacts">Контакты</a></li>
@@ -15,7 +15,7 @@
 
         <div class="header-actions">
             <div class="phone">
-                <i class="fas fa-phone"></i> +7 (912) 010-26-50
+                <i class="fas fa-phone"></i><a href="tel:+79991897098">+7 (999) 189-70-98</a>
             </div>
             <div class="social-icons">
                 <a href="#" title="ВКонтакте"><i class="fab fa-vk"></i></a>

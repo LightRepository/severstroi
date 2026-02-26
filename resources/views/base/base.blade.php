@@ -48,7 +48,7 @@
                 <div class="catalog-content">
                     <h3>Песок</h3>
                     <p>Карьерный и речной песок различных фракций для строительных и отделочных работ</p>
-                    <div class="catalog-price">от 450 руб/т</div>
+                    <div class="catalog-price">от 800 руб/т</div>
                     <a href="{{ route('catalog') }}?category=sand" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="catalog-content">
                     <h3>ПГС</h3>
                     <p>Песчано-гравийная смесь природного происхождения для дорожных работ и фундаментов</p>
-                    <div class="catalog-price">от 600 руб/т</div>
+                    <div class="catalog-price">от 900 руб/т</div>
                     <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <div class="catalog-content">
                     <h3>ОПГС</h3>
                     <p>Обогащенная песчано-гравийная смесь с повышенным содержанием гравия для бетона</p>
-                    <div class="catalog-price">от 800 руб/т</div>
+                    <div class="catalog-price">от 1200 руб/т</div>
                     <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <div class="catalog-content">
                     <h3>Щебень</h3>
                     <p>Гранитный и гравийный щебень различных фракций и марок прочности</p>
-                    <div class="catalog-price">от 1200 руб/т</div>
+                    <div class="catalog-price">от 1900 руб/т</div>
                     <a href="{{ route('catalog') }}?category=stone" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
@@ -99,6 +99,38 @@
                     <p>Вторичный материал для отсыпки дорог, парковок и временных покрытий</p>
                     <div class="catalog-price">от 1200 руб/т</div>
                     <a href="{{ route('catalog') }}?category=asphalt" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дополнительные материалы и информация о ценообразовании -->
+        <div class="additional-info">
+            <div class="additional-wrapper">
+                <div class="price-note">
+                    <i class="fas fa-calculator"></i>
+                    <p>Цена рассчитывается индивидуально, зависит от объёма и логистики.<br>
+                        <span class="pickup-small">При самовывозе — специальные условия, уточняйте у менеджера.</span></p>
+                </div>
+
+                <div class="additional-materials">
+                    <h3>Дополнительные материалы</h3>
+                    <div class="additional-grid">
+                        <div class="additional-item">
+                            <div class="additional-icon"><i class="fas fa-mountain"></i></div>
+                            <h4>Грунт песчаный</h4>
+                            <p>Цена по запросу</p>
+                        </div>
+                        <div class="additional-item">
+                            <div class="additional-icon"><i class="fas fa-layer-group"></i></div>
+                            <h4>Глина</h4>
+                            <p>Цена по запросу</p>
+                        </div>
+                        <div class="additional-item">
+                            <div class="additional-icon"><i class="fas fa-seedling"></i></div>
+                            <h4>Плодородная земля</h4>
+                            <p>Цена по запросу</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,7 +159,7 @@
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-truck-arrow-right"></i>  <!-- Новая иконка: грузовик со стрелкой -->
+                        <i class="fas fa-truck-arrow-right"></i>
                     </div>
                     <div class="feature-content">
                         <h4>Перевозка сыпучих материалов</h4>
@@ -136,7 +168,7 @@
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-road"></i>  <!-- Новая иконка: грузовик с платформой -->
+                        <i class="fas fa-road"></i>
                     </div>
                     <div class="feature-content">
                         <h4>Доставка песка, ПГС, щебня</h4>
@@ -192,82 +224,83 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <div class="pickup-map animate">
                 <div class="map-container">
                     <div id="map-pickup" style="width: 100%; height: 400px; border-radius: 16px; overflow: hidden;"></div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="points-list">
-                        <h4>Наши карьеры и склады:</h4>
+        <!-- Список точек самовывоза (вынесен отдельно) -->
+        <div class="points-list-wrapper">
+            <div class="points-list">
+                <h4>Наши карьеры и склады:</h4>
 
-                        <div class="point-item" data-point="1" data-type="river">
-                            <div class="point-header">
-                                <h5>Волковское месторождение (Карьер «Лагуна»)</h5>
-                                <span class="point-badge" style="background: #1e88e5;">Речной</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 56.747004, 54.022544</p>
-                                <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="1" data-type="river">
+                    <div class="point-header">
+                        <h5>Волковское месторождение (Карьер «Лагуна»)</h5>
+                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 56.747004, 54.022544</p>
+                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
+                    </div>
+                </div>
 
-                        <div class="point-item" data-point="2" data-type="river">
-                            <div class="point-header">
-                                <h5>Сидоровы горы</h5>
-                                <span class="point-badge" style="background: #1e88e5;">Речной</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 56.841602, 53.852465</p>
-                                <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="2" data-type="river">
+                    <div class="point-header">
+                        <h5>Сидоровы горы</h5>
+                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 56.841602, 53.852465</p>
+                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
+                    </div>
+                </div>
 
-                        <div class="point-item" data-point="3" data-type="river">
-                            <div class="point-header">
-                                <h5>Ярамаска</h5>
-                                <span class="point-badge" style="background: #1e88e5;">Речной</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 56.521011, 53.794479</p>
-                                <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="3" data-type="river">
+                    <div class="point-header">
+                        <h5>Ярамаска</h5>
+                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 56.521011, 53.794479</p>
+                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
+                    </div>
+                </div>
 
-                        <div class="point-item" data-point="4" data-type="river">
-                            <div class="point-header">
-                                <h5>Каракулино</h5>
-                                <span class="point-badge" style="background: #1e88e5;">Речной</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 55.996848, 53.682743</p>
-                                <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="4" data-type="river">
+                    <div class="point-header">
+                        <h5>Каракулино</h5>
+                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 55.996848, 53.682743</p>
+                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
+                    </div>
+                </div>
 
-                        <div class="point-item" data-point="5" data-type="crushed">
-                            <div class="point-header">
-                                <h5>Завьяловский район</h5>
-                                <span class="point-badge" style="background: #ff6b00;">Щебень</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 56.750000, 53.600000</p>
-                                <p><i class="fas fa-tag"></i> Гранитный щебень (20-40, 40-70)</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="5" data-type="crushed">
+                    <div class="point-header">
+                        <h5>Завьяловский район</h5>
+                        <span class="point-badge" style="background: #ff6b00;">Щебень</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 56.750000, 53.600000</p>
+                        <p><i class="fas fa-tag"></i> Гранитный щебень (20-40, 40-70)</p>
+                    </div>
+                </div>
 
-                        <div class="point-item" data-point="6" data-type="crushed">
-                            <div class="point-header">
-                                <h5>Пойма 34</h5>
-                                <span class="point-badge" style="background: #ff6b00;">Щебень</span>
-                            </div>
-                            <div class="point-details">
-                                <p><i class="fas fa-crosshairs"></i> 56.950000, 54.000000</p>
-                                <p><i class="fas fa-tag"></i> Гравийный щебень, отсев</p>
-                            </div>
-                        </div>
+                <div class="point-item" data-point="6" data-type="crushed">
+                    <div class="point-header">
+                        <h5>Пойма 34</h5>
+                        <span class="point-badge" style="background: #ff6b00;">Щебень</span>
+                    </div>
+                    <div class="point-details">
+                        <p><i class="fas fa-crosshairs"></i> 56.950000, 54.000000</p>
+                        <p><i class="fas fa-tag"></i> Гравийный щебень, отсев</p>
                     </div>
                 </div>
             </div>
@@ -286,7 +319,7 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <h3><i class="fas fa-phone"></i> Телефон</h3>
-                    <p>+7 (912) 010-26-50</p>
+                    <p><a href="tel:+79991897098">+7 (999) 189-70-98</a></p>
                     <p class="small-text">Работаем круглосуточно</p>
                 </div>
 
@@ -297,7 +330,7 @@
 
                 <div class="contact-item">
                     <h3><i class="fas fa-envelope"></i> Email</h3>
-                    <p>office@severstroy18.ru</p>
+                    <p><a href="mailto:office@severstroy18.ru">office@severstroy18.ru</a></p>
                 </div>
 
                 <div class="contact-item">
@@ -313,7 +346,6 @@
             <div class="map-container-contact">
                 <div class="map-contact">
                     <div class="map-placeholder-contact">
-                        <!-- Обновленный iframe с адаптивными параметрами -->
                         <iframe
                             src="https://yandex.ru/map-widget/v1/?um=constructor%3A21012e5d30341c8d9c7dd3a3e4b1bb12345e95be85589465409fb38ce8889ccd&amp;source=constructor"
                             width="100%"

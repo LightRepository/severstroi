@@ -957,6 +957,166 @@ footer {
     align-items: stretch;
 }
 
+/* Дополнительная информация и материалы */
+.additional-info {
+    padding: 60px 0 40px;
+    background: var(--light-gray);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.additional-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.price-note {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--card-bg);
+    padding: 25px 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.price-note i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.price-note p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.pickup-small {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    background: rgba(55, 46, 127, 0.05);
+    padding: 4px 12px;
+    border-radius: 30px;
+}
+
+/* Блок дополнительных материалов */
+.additional-materials h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 10px;
+}
+
+.additional-materials h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.additional-item {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.additional-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.additional-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(55, 46, 127, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.additional-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.additional-item p {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Подсказка о самовывозе в карточках */
+.pickup-hint {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    border-top: 1px dashed var(--border-color);
+    padding-top: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .price-note {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .price-note i {
+        margin-bottom: 10px;
+    }
+
+    .additional-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .additional-item {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .additional-materials h3 {
+        font-size: 1.5rem;
+    }
+}
+
 .pickup-intro {
     margin-bottom: 40px;
 }
@@ -1472,11 +1632,24 @@ footer {
     }
 
     .points-list {
-        padding: 20px;
+        padding: 25px;
+    }
+    .points-list h4 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #2c3e50;
     }
 
-    .points-list h4 {
-        text-align: center;
+    .points-list-wrapper {
+        margin-top: 40px;  /* отступ от верхних колонок */
+        width: 100%;
+    }
+
+    /* На мобильных устройствах отступ можно уменьшить */
+    @media (max-width: 767px) {
+        .points-list-wrapper {
+            margin-top: 30px;
+        }
     }
 }
 
@@ -1550,9 +1723,7 @@ footer {
         height: 350px;
     }
 
-    .pickup-content {
-        gap: 40px !important;
-    }
+
 }
 .map-contact::after {
     content: '';
@@ -1636,8 +1807,8 @@ footer::after {
 .footer-logo {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
     transition: transform 0.3s ease;
+    gap: 20px;
 }
 
 .footer-logo:hover {
@@ -1652,6 +1823,11 @@ footer::after {
 .footer-logo .logo-text span {
     color: var(--accent-color);
 }
+
+.footer-logo img{
+    width: 50px;
+}
+
 
 .footer-about {
     margin-top: 15px;

@@ -171,7 +171,7 @@ function createPickupMap() {
     const map = new ymaps.Map('map-pickup', {
         center: center,
         zoom: 8,
-        controls: ['zoomControl', 'fullscreenControl']
+        controls: ['zoomControl']
     });
 
     // Список точек с координатами и типом
@@ -189,19 +189,7 @@ function createPickupMap() {
         river: 'blue',
         crushed: 'orange'
     };
-    pointItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            if (index < points.length) {
-                map.setCenter(points[index].coords, 10, { duration: 300 });
 
-                // Плавная прокрутка к блоку карты
-                const mapContainer = document.getElementById('map-pickup');
-                if (mapContainer) {
-                    mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-        });
-    });
     points.forEach(point => {
         const placemark = new ymaps.Placemark(point.coords, {
             hintContent: point.name,
@@ -218,9 +206,16 @@ function createPickupMap() {
         item.addEventListener('click', function() {
             if (index < points.length) {
                 map.setCenter(points[index].coords, 10, { duration: 300 });
+                // прокрутка к карте
+                const mapContainer = document.getElementById('map-pickup');
+                if (mapContainer) {
+                    mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         });
     });
+
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
