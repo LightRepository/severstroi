@@ -55,10 +55,10 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="{{ asset('img/pgs/pgs1.png') }}" alt="ПГС">
+                    <img src="{{ asset('img/items/ПГС.jpeg') }}" alt="ПГС">
                 </div>
                 <div class="catalog-content">
-                    <h3>ПГС</h3>
+                    <h3>ПГС и ОПГС</h3>
                     <p>Песчано-гравийная смесь природного происхождения для дорожных работ и фундаментов</p>
                     <div class="catalog-price">от 900 руб/т</div>
                     <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
@@ -66,25 +66,12 @@
             </div>
 
             <div class="catalog-card">
-                <div class="catalog-badge">Хит продаж</div>
                 <div class="catalog-img">
-                    <img src="{{ asset('img/opgs/opgs.png') }}" alt="ОПГС">
-                </div>
-                <div class="catalog-content">
-                    <h3>ОПГС</h3>
-                    <p>Обогащенная песчано-гравийная смесь с повышенным содержанием гравия для бетона</p>
-                    <div class="catalog-price">от 1200 руб/т</div>
-                    <a href="{{ route('catalog') }}?category=mix" class="btn btn-primary">Подробнее</a>
-                </div>
-            </div>
-
-            <div class="catalog-card">
-                <div class="catalog-img">
-                    <img src="{{ asset('img/sheben/sheben1000f31-63.png') }}" alt="Щебень">
+                    <img src="{{ asset('img/items/Щебень.jpg') }}" alt="Щебень">
                 </div>
                 <div class="catalog-content">
                     <h3>Щебень</h3>
-                    <p>Гранитный и гравийный щебень различных фракций и марок прочности</p>
+                    <p>Гранитный и гравийный щебень различных фракций и марок прочности для бетона и строительства</p>
                     <div class="catalog-price">от 1900 руб/т</div>
                     <a href="{{ route('catalog') }}?category=stone" class="btn btn-primary">Подробнее</a>
                 </div>
@@ -92,7 +79,7 @@
 
             <div class="catalog-card">
                 <div class="catalog-img">
-                    <img src="{{ asset('img/asfalt/asfalt1.png') }}" alt="Асфальтная крошка">
+                    <img src="{{ asset('img/items/Асфальтная крошка.jpg') }}" alt="Асфальтная крошка">
                 </div>
                 <div class="catalog-content">
                     <h3>Асфальтная крошка</h3>
@@ -210,7 +197,7 @@
                             <i class="fas fa-water"></i>
                         </div>
                         <div class="feature-content">
-                            <h4>Речные материалы</h4>
+                            <h4>Инертные материалы</h4>
                             <p>Песок, ПГС, гравий — синие метки на карте</p>
                         </div>
                     </div>
@@ -226,81 +213,64 @@
                 </div>
             </div>
 
+            <!-- Карта с точками (статичное фото + кликабельные метки) -->
             <div class="pickup-map animate">
-                <div class="map-container">
-                    <div id="map-pickup" style="width: 100%; height: 400px; border-radius: 16px; overflow: hidden;"></div>
-                </div>
-            </div>
-        </div>
+                <div class="map-container" style="position: relative; display: inline-block; width: 100%;">
+                    <!-- Фоновое изображение карты (замените на своё) -->
+                    <img src="{{ asset('img/карта северстрой.jpg') }}" alt="Схема расположения карьеров" style="width: 100%; height: auto; border-radius: 16px; box-shadow: var(--shadow); display: block;">
 
-        <!-- Список точек самовывоза (вынесен отдельно) -->
-        <div class="points-list-wrapper">
-            <div class="points-list">
-                <h4>Наши карьеры и склады:</h4>
+                    <!-- Волковское месторождение (речные) -->
+                    <div class="map-point" data-point="volkovskoe" style="position: absolute; left: 20%; top: 30%;">
+                        <div class="point-marker" style="background-color: #1e88e5;">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="point-tooltip">
+                            <strong>Волковское месторождение (Карьер «Лагуна»)</strong><br>
+                            <span style="color: #1e88e5;">Инертные материалы (песок, ПГС, гравий)</span>
+                        </div>
+                    </div>
 
-                <div class="point-item" data-point="1" data-type="river">
-                    <div class="point-header">
-                        <h5>Волковское месторождение (Карьер «Лагуна»)</h5>
-                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    <!-- Сидоровы горы (речные) -->
+                    <div class="map-point" data-point="sidorovy" style="position: absolute; left: 90%; top: 50%;">
+                        <div class="point-marker" style="background-color: #1e88e5;">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="point-tooltip">
+                            <strong>Сидоровы горы</strong><br>
+                            <span style="color: #1e88e5;">Инертные материалы (песок, ПГС, гравий)</span>
+                        </div>
                     </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 56.747004, 54.022544</p>
-                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                    </div>
-                </div>
 
-                <div class="point-item" data-point="2" data-type="river">
-                    <div class="point-header">
-                        <h5>Сидоровы горы</h5>
-                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    <!-- Яромаска (речные) -->
+                    <div class="map-point" data-point="yaromaska" style="position: absolute; left: 65%; top: 60%;">
+                        <div class="point-marker" style="background-color: #1e88e5;">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="point-tooltip">
+                            <strong>Яромаска</strong><br>
+                            <span style="color: #1e88e5;">Инертные материалы (песок, ПГС, гравий)</span>
+                        </div>
                     </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 56.841602, 53.852465</p>
-                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                    </div>
-                </div>
 
-                <div class="point-item" data-point="3" data-type="river">
-                    <div class="point-header">
-                        <h5>Ярамаска</h5>
-                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
+                    <!-- Каракулино (речные) -->
+                    <div class="map-point" data-point="karakulino" style="position: absolute; left: 60%; top: 90%;">
+                        <div class="point-marker" style="background-color: #1e88e5;">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="point-tooltip">
+                            <strong>Каракулино</strong><br>
+                            <span style="color: #1e88e5;">Инертные материалы (песок, ПГС, гравий)</span>
+                        </div>
                     </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 56.521011, 53.794479</p>
-                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                    </div>
-                </div>
-
-                <div class="point-item" data-point="4" data-type="river">
-                    <div class="point-header">
-                        <h5>Каракулино</h5>
-                        <span class="point-badge" style="background: #1e88e5;">Речной</span>
-                    </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 55.996848, 53.682743</p>
-                        <p><i class="fas fa-tag"></i> Песок, ПГС, гравий</p>
-                    </div>
-                </div>
-
-                <div class="point-item" data-point="5" data-type="crushed">
-                    <div class="point-header">
-                        <h5>Завьяловский район</h5>
-                        <span class="point-badge" style="background: #ff6b00;">Щебень</span>
-                    </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 56.750000, 53.600000</p>
-                        <p><i class="fas fa-tag"></i> Гранитный щебень (20-40, 40-70)</p>
-                    </div>
-                </div>
-
-                <div class="point-item" data-point="6" data-type="crushed">
-                    <div class="point-header">
-                        <h5>Пойма 34</h5>
-                        <span class="point-badge" style="background: #ff6b00;">Щебень</span>
-                    </div>
-                    <div class="point-details">
-                        <p><i class="fas fa-crosshairs"></i> 56.950000, 54.000000</p>
-                        <p><i class="fas fa-tag"></i> Гравийный щебень, отсев</p>
+                    <!-- Пойма 34 -->
+                    <div class="map-point" data-point="poima34" style="position: absolute; left: 55%; top: 20%;">
+                        <div class="point-marker" style="background-color: #ff6b00;">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="point-tooltip">
+                            <strong>Пойма 34</strong><br>
+                            <span style="color: #ff6b00;">Гранитный и гравийный щебень</span>
+                        </div>
                     </div>
                 </div>
             </div>

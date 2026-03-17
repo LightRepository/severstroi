@@ -1,4 +1,4 @@
-// script.js – оптимизированная версия
+
 
 // ==================== МОБИЛЬНОЕ МЕНЮ ====================
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -59,104 +59,6 @@ if (animatedElements.length > 0) {
     animatedElements.forEach(el => observer.observe(el));
 }
 
-// ==================== ВЗАИМОДЕЙСТВИЕ МЕЖДУ КАРТОЙ И СПИСКОМ ТОЧЕК ====================
-document.addEventListener('DOMContentLoaded', function() {
-    const mapPoints = document.querySelectorAll('.map-point');
-    const listPoints = document.querySelectorAll('.point-item');
-
-    if (mapPoints.length === 0 || listPoints.length === 0) return;
-
-    function activatePoint(pointId) {
-        mapPoints.forEach(point => point.classList.remove('active'));
-        listPoints.forEach(point => point.classList.remove('active'));
-
-        const selectedMapPoint = document.querySelector(`.map-point[data-point="${pointId}"]`);
-        const selectedListItem = document.querySelector(`.point-item[data-point="${pointId}"]`);
-
-        if (selectedMapPoint) selectedMapPoint.classList.add('active');
-        if (selectedListItem) selectedListItem.classList.add('active');
-    }
-
-    mapPoints.forEach(point => {
-        point.addEventListener('click', function() {
-            const pointId = this.getAttribute('data-point');
-            activatePoint(pointId);
-        });
-    });
-
-    listPoints.forEach(point => {
-        point.addEventListener('click', function() {
-            const pointId = this.getAttribute('data-point');
-            activatePoint(pointId);
-        });
-    });
-});
-
-// ==================== ЯНДЕКС.КАРТА ДЛЯ ТОЧЕК САМОВЫВОЗА ====================
-function initPickupMap() {
-    const mapContainer = document.getElementById('map-pickup');
-    if (!mapContainer) return;
-
-    if (typeof ymaps === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://api-maps.yandex.ru/2.1/?apikey=7317a0b1-4c54-4ccc-9d89-0f5edf9534ed&lang=ru_RU';
-        script.type = 'text/javascript';
-        script.onload = () => {
-            ymaps.ready(createPickupMap);
-        };
-        document.head.appendChild(script);
-    } else {
-        ymaps.ready(createPickupMap);
-    }
-}
-
-function createPickupMap() {
-    const mapContainer = document.getElementById('map-pickup');
-    if (!mapContainer) return;
-
-    const center = [56.5, 53.5];
-    const map = new ymaps.Map('map-pickup', {
-        center: center,
-        zoom: 8,
-        controls: ['zoomControl']
-    });
-
-    const points = [
-        { coords: [56.747004, 54.022544], name: 'Волковское месторождение (Карьер «Лагуна»)', type: 'river' },
-        { coords: [56.841602, 53.852465], name: 'Сидоровы горы', type: 'river' },
-        { coords: [56.521011, 53.794479], name: 'Ярамаска', type: 'river' },
-        { coords: [55.996848, 53.682743], name: 'Каракулино', type: 'river' },
-        { coords: [56.75, 53.60], name: 'Щебень разных фракций', type: 'crushed' },
-        { coords: [56.95, 54.00], name: 'Пойма 34', type: 'crushed' }
-    ];
-
-    const iconColors = { river: 'blue', crushed: 'orange' };
-
-    points.forEach(point => {
-        const placemark = new ymaps.Placemark(point.coords, {
-            hintContent: point.name,
-            balloonContent: `<strong>${point.name}</strong><br>Тип: ${point.type === 'river' ? 'Речные материалы' : 'Щебень'}`
-        }, {
-            preset: `islands#${iconColors[point.type]}Icon`
-        });
-        map.geoObjects.add(placemark);
-    });
-
-    const pointItems = document.querySelectorAll('.point-item');
-    pointItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            if (index < points.length) {
-                map.setCenter(points[index].coords, 10, { duration: 300 });
-                const mapContainer = document.getElementById('map-pickup');
-                if (mapContainer) {
-                    mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', initPickupMap);
 
 // ==================== МОДАЛЬНОЕ ОКНО БЫСТРОЙ ЗАЯВКИ ====================
 document.addEventListener('DOMContentLoaded', function() {
@@ -248,3 +150,56 @@ window.addEventListener('resize', () => {
         }
     }, 150);
 });
+
+// ==================== АДАПТИВНОЕ ПОЗИЦИОНИРОВАНИЕ ТУЛТИПОВ ====================
+function adjustTooltipPosition() {
+    const mapPoints = document.querySelectorAll('.map-point');
+    mapPoints.forEach(point => {
+        point.removeEventListener('mouseenter', positionTooltip);
+        point.addEventListener('mouseenter', positionTooltip);
+    });
+}
+
+function positionTooltip(e) {
+    const tooltip = this.querySelector('.point-tooltip');
+    if (!tooltip) return;
+
+    // Сбрасываем все возможные классы позиционирования
+    tooltip.classList.remove('tooltip-bottom', 'tooltip-left', 'tooltip-right');
+
+    requestAnimationFrame(() => {
+        const markerRect = this.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect(); // после сброса классов получим естественное положение (сверху)
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Проверяем, помещается ли тултип сверху
+        if (markerRect.top < tooltipRect.height + 10) {
+            // Сверху не помещается – пробуем снизу
+            tooltip.classList.add('tooltip-bottom');
+            // Даём браузеру обновиться с новым классом, затем проверяем по горизонтали
+            requestAnimationFrame(() => {
+                const newTooltipRect = tooltip.getBoundingClientRect();
+                // По горизонтали: если выходит за правый край
+                if (newTooltipRect.right > viewportWidth) {
+                    tooltip.classList.add('tooltip-left');
+                }
+                // Если выходит за левый край
+                if (newTooltipRect.left < 0) {
+                    tooltip.classList.add('tooltip-right');
+                }
+            });
+        } else {
+            // Сверху помещается, но проверяем по горизонтали
+            if (tooltipRect.right > viewportWidth) {
+                tooltip.classList.add('tooltip-left');
+            }
+            if (tooltipRect.left < 0) {
+                tooltip.classList.add('tooltip-right');
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', adjustTooltipPosition);
+window.addEventListener('resize', adjustTooltipPosition);

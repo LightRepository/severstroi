@@ -1068,15 +1068,6 @@ footer {
     margin: 0;
 }
 
-.pickup-hint {
-    display: block;
-    margin-top: 8px;
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    border-top: 1px dashed var(--border-color);
-    padding-top: 8px;
-}
-
 @media (max-width: 768px) {
     .price-note {
         flex-direction: column;
@@ -1117,7 +1108,8 @@ footer {
 .pickup-intro p {
     font-size: 16px;
     line-height: 1.6;
-    color: #6c757d;
+    color: #2c3e50;  /* тёмно-синий, хорошо читается на светлом фоне */
+    font-weight: 400;
 }
 
 .pickup-features {
@@ -1155,8 +1147,9 @@ footer {
 
 .feature-content p {
     font-size: 14px;
-    color: #6c757d;
+    color: #2c3e50;
     margin: 0;
+    font-weight: 400;
 }
 
 .pickup-instructions {
@@ -1183,9 +1176,9 @@ footer {
 
 .map-container {
     background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 16px;  /* приведите к единому стилю */
+    overflow: visible;     /* разрешаем выход за границы */
+    box-shadow: var(--shadow);
 }
 
 .map-visual {
@@ -1221,10 +1214,11 @@ footer {
 }
 
 .map-point {
-    position: absolute;
-    transform: translate(-50%, -100%);
-    cursor: pointer;
-    z-index: 10;
+    transition: transform 0.2s;
+}
+.map-point:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 20;
 }
 
 .point-marker {
@@ -1504,12 +1498,6 @@ footer {
     line-height: 1.3;
 }
 
-.feature-content p {
-    font-size: 14px;
-    color: #6c757d;
-    margin: 0;
-    line-height: 1.4;
-}
 
 @media (max-width: 767px) {
     .catalog-content{
@@ -2654,4 +2642,162 @@ body.dark-mode .footer-contact p {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* Контейнер точки */
+.map-point {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+}
+
+.point-marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+    font-size: 18px;
+}
+
+.point-marker i {
+    transform: rotate(45deg); /* компенсируем поворот контейнера */
+}
+
+.map-point:hover .point-marker {
+    transform: rotate(-45deg) scale(1.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Базовая позиция точки */
+.map-point {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+}
+
+/* Тултип */
+.point-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-bottom: 10px;
+    z-index: 30;
+    font-weight: normal;
+    line-height: 1.4;
+    border: 1px solid rgba(0,0,0,0.1); /* уже есть, но убедитесь */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.map-point:hover .point-tooltip {
+    opacity: 1;
+}
+
+/* Стрелочка снизу тултипа */
+.point-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 767px) {
+    .point-tooltip {
+        font-size: 12px;
+        padding: 6px 10px;
+        white-space: normal;
+        max-width: 200px;
+    }
+}
+
+/* === Стилизация select в модальном окне === */
+.modal-form select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: white;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.modal-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(55, 46, 127, 0.1);
+}
+
+/* === Улучшение тултипов на карте === */
+.point-tooltip {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Вариант появления снизу (когда сверху нет места) */
+.point-tooltip.tooltip-bottom {
+    bottom: auto;
+    top: 100%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.point-tooltip.tooltip-bottom::after {
+    top: auto;
+    bottom: 100%;
+    border-color: transparent transparent white transparent;
+}
+
+/* Адаптация для мобильных (уже есть, но продублируем для надёжности) */
+@media (max-width: 767px) {
+    .point-tooltip {
+        font-size: 12px;
+        padding: 6px 10px;
+        white-space: normal;
+        max-width: 180px;
+    }
+}
+
+.point-tooltip.tooltip-left {
+    left: auto;
+    right: 0;
+    transform: none;
+}
+.point-tooltip.tooltip-left::after {
+    left: auto;
+    right: 10px;
+}
+.point-tooltip.tooltip-right {
+    left: 0;
+    transform: none;
+}
+.point-tooltip.tooltip-right::after {
+    left: 10px;
 }
