@@ -217,10 +217,10 @@
             <div class="pickup-map animate">
                 <div class="map-container" style="position: relative; display: inline-block; width: 100%;">
                     <!-- Фоновое изображение карты (замените на своё) -->
-                    <img src="{{ asset('img/карта северстрой.jpg') }}" alt="Схема расположения карьеров" style="width: 100%; height: auto; border-radius: 16px; box-shadow: var(--shadow); display: block;">
+                    <img src="{{ asset('img/map.png') }}" alt="Схема расположения карьеров" style="width: 100%; height: auto; border-radius: 16px; box-shadow: var(--shadow); display: block;">
 
                     <!-- Волковское месторождение (речные) -->
-                    <div class="map-point" data-point="volkovskoe" style="position: absolute; left: 20%; top: 30%;">
+                    <div class="map-point" data-point="volkovskoe" style="position: absolute; left: 57%; top: 60%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
                             <i class="fas fa-water"></i>
                         </div>
@@ -231,7 +231,7 @@
                     </div>
 
                     <!-- Сидоровы горы (речные) -->
-                    <div class="map-point" data-point="sidorovy" style="position: absolute; left: 90%; top: 50%;">
+                    <div class="map-point" data-point="sidorovy" style="position: absolute; left: 57%; top: 43%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
                             <i class="fas fa-water"></i>
                         </div>
@@ -242,7 +242,7 @@
                     </div>
 
                     <!-- Яромаска (речные) -->
-                    <div class="map-point" data-point="yaromaska" style="position: absolute; left: 65%; top: 60%;">
+                    <div class="map-point" data-point="yaromaska" style="position: absolute; left: 57%; top: 70%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
                             <i class="fas fa-water"></i>
                         </div>
@@ -253,7 +253,7 @@
                     </div>
 
                     <!-- Каракулино (речные) -->
-                    <div class="map-point" data-point="karakulino" style="position: absolute; left: 60%; top: 90%;">
+                    <div class="map-point" data-point="karakulino" style="position: absolute; left: 60%; top: 95%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
                             <i class="fas fa-water"></i>
                         </div>
@@ -263,12 +263,12 @@
                         </div>
                     </div>
                     <!-- Пойма 34 -->
-                    <div class="map-point" data-point="poima34" style="position: absolute; left: 55%; top: 20%;">
+                    <div class="map-point" data-point="poima34" style="position: absolute; left: 43%; top: 43%;">
                         <div class="point-marker" style="background-color: #ff6b00;">
                             <i class="fas fa-mountain"></i>
                         </div>
                         <div class="point-tooltip">
-                            <strong>Пойма 34</strong><br>
+                            <strong>Пойма</strong><br>
                             <span style="color: #ff6b00;">Гранитный и гравийный щебень</span>
                         </div>
                     </div>
