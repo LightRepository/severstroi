@@ -1630,6 +1630,7 @@ footer {
     }
 
     .contact-item h3 {
+        align-items: center;
         font-size: 1rem;
     }
 
