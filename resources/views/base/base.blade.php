@@ -263,7 +263,7 @@
                         </div>
                     </div>
                     <!-- Пойма 34 -->
-                    <div class="map-point" data-point="poima34" style="position: absolute; left: 43%; top: 43%;">
+                    <div class="map-point" data-point="poima34" style="position: absolute; left: 42%; top: 42%;">
                         <div class="point-marker" style="background-color: #ff6b00;">
                             <i class="fas fa-mountain"></i>
                         </div>
