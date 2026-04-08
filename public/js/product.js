@@ -608,33 +608,64 @@ function submitOrderForm() {
     const customerEmail = document.getElementById('customerEmail')?.value || '';
     const deliveryAddress = document.getElementById('deliveryAddress')?.value || '';
     const orderComment = document.getElementById('orderComment')?.value || '';
+    const csrfToken = document.querySelector('#orderForm input[name="_token"]')?.value || '';
 
-    closeOrderModal();
+    const formData = new FormData();
+    formData.append('_token', csrfToken);
+    formData.append('product', productName);
+    formData.append('quantity', quantity);
+    formData.append('unit', unit);
+    formData.append('total_price', totalPrice);
+    formData.append('name', customerName);
+    formData.append('phone', customerPhone);
+    formData.append('email', customerEmail);
+    formData.append('address', deliveryAddress);
+    formData.append('comment', orderComment);
 
-    const successModal = document.getElementById('successModal');
-    if (successModal) successModal.classList.add('active');
+    fetch('/order', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json',
+        },
+        body: formData,
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeOrderModal();
 
-    const successDetails = document.getElementById('successDetails');
-    if (successDetails) {
-        successDetails.innerHTML = `
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                <h4 style="margin-bottom: 10px; color: var(--primary-color);">Детали заявки:</h4>
-                <p><strong>Товар:</strong> ${productName}</p>
-                <p><strong>Количество:</strong> ${quantity} ${unit === 'ton' ? 'тонн' : 'м³'}</p>
-                <p><strong>Стоимость материалов:</strong> ${totalPrice}</p>
-                <p><strong>ФИО:</strong> ${customerName}</p>
-                <p><strong>Телефон:</strong> ${customerPhone}</p>
-                <p><strong>Email:</strong> ${customerEmail}</p>
-                ${deliveryAddress ? `<p><strong>Адрес доставки:</strong> ${deliveryAddress}</p>` : ''}
-                ${orderComment ? `<p><strong>Комментарий:</strong> ${orderComment}</p>` : ''}
-                <p style="margin-top: 10px; color: var(--accent-color); font-weight: 600;">
-                    *Стоимость доставки будет рассчитана менеджером и сообщена дополнительно
-                </p>
-            </div>
-        `;
-    }
+                const successModal = document.getElementById('successModal');
+                if (successModal) successModal.classList.add('active');
 
-    resetOrderForm();
+                const successDetails = document.getElementById('successDetails');
+                if (successDetails) {
+                    successDetails.innerHTML = `
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                            <h4 style="margin-bottom: 10px; color: var(--primary-color);">Детали заявки:</h4>
+                            <p><strong>Товар:</strong> ${productName}</p>
+                            <p><strong>Количество:</strong> ${quantity} ${unit === 'ton' ? 'тонн' : 'м³'}</p>
+                            <p><strong>Стоимость материалов:</strong> ${totalPrice}</p>
+                            <p><strong>ФИО:</strong> ${customerName}</p>
+                            <p><strong>Телефон:</strong> ${customerPhone}</p>
+                            <p><strong>Email:</strong> ${customerEmail}</p>
+                            ${deliveryAddress ? `<p><strong>Адрес доставки:</strong> ${deliveryAddress}</p>` : ''}
+                            ${orderComment ? `<p><strong>Комментарий:</strong> ${orderComment}</p>` : ''}
+                            <p style="margin-top: 10px; color: var(--accent-color); font-weight: 600;">
+                                *Стоимость доставки будет рассчитана менеджером и сообщена дополнительно
+                            </p>
+                        </div>
+                    `;
+                }
+
+                resetOrderForm();
+            } else {
+                alert('Ошибка: ' + (data.message || 'Попробуйте позже'));
+            }
+        })
+        .catch(() => {
+            alert('Произошла ошибка при отправке. Проверьте соединение.');
+        });
 }
 
 // ==================== ОБРАБОТКА КНОПОК "КУПИТЬ" ====================

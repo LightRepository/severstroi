@@ -305,6 +305,7 @@
             <button class="close-modal" id="closeOrderModalBtn">&times;</button>
         </div>
         <form id="orderForm">
+            @csrf
             <div class="form-group">
                 <label class="form-label">Товар</label>
                 <input type="text" class="form-control" id="selectedProduct" readonly>
