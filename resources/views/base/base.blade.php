@@ -3,8 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="yandex-verification" content="65f0ed8b637c35ad" />
-    <title>СеверСтрой - Инертные материалы с доставкой</title>
+
+    <title>Инертные материалы с доставкой по Удмуртии | СеверСтрой</title>
+    <meta name="description" content="СеверСтрой — продажа и доставка инертных материалов по всей Удмуртии. Песок, щебень, ПГС, ОПГС, асфальтная крошка по выгодным ценам. Звоните: +7 (999) 189-70-98.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://severstroy18.ru/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://severstroy18.ru/">
+    <meta property="og:title" content="Инертные материалы с доставкой по Удмуртии | СеверСтрой">
+    <meta property="og:description" content="СеверСтрой — продажа и доставка инертных материалов по всей Удмуртии. Песок, щебень, ПГС, ОПГС, асфальтная крошка по выгодным ценам.">
+    <meta property="og:image" content="https://severstroy18.ru/img/background.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="СеверСтрой">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('android-chrome-192x192.png') }}">
+
+    <!-- Yandex Webmaster -->
+    <meta name="yandex-verification" content="65f0ed8b637c35ad">
+
+    <!-- JSON-LD: LocalBusiness -->
+    <script type="application/ld+json">
+    @verbatim
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "СеверСтрой",
+        "description": "Продажа и доставка инертных материалов по всей Удмуртии: песок, щебень, ПГС, ОПГС, асфальтная крошка.",
+        "url": "https://severstroy18.ru",
+        "telephone": "+79991897098",
+        "email": "office@severstroy18.ru",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Дерябина, 3",
+            "addressLocality": "Ижевск",
+            "addressRegion": "Удмуртская Республика",
+            "addressCountry": "RU"
+        },
+        "areaServed": {
+            "@type": "State",
+            "name": "Удмуртская Республика"
+        },
+        "priceRange": "от 800 ₽/т",
+        "image": "https://severstroy18.ru/img/background.png"
+    }
+    @endverbatim
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -24,7 +75,7 @@
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Инертные материалы <br><span>с доставкой</span></h1>
-            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой по Ижевску и Удмуртии</p>
+            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой по всей Удмуртии</p>
             <div class="hero-buttons">
                 <a href="{{ route('catalog') }}" class="btn btn-primary">Каталог материалов</a>
                 <a href="#contacts" class="btn btn-outline">Связаться с нами</a>
@@ -133,7 +184,7 @@
         </div>
         <div class="transport-content">
             <div class="transport-description">
-                <p>Перевозим сыпучие материалы по Ижевску и Удмуртии. Собственный автопарк самосвалов гарантирует оперативность и надёжность. Индивидуальный подход к каждому клиенту.</p>
+                <p>Перевозим сыпучие материалы по всей Удмуртии. Собственный автопарк самосвалов гарантирует оперативность и надёжность. Индивидуальный подход к каждому клиенту.</p>
             </div>
             <div class="transport-features">
                 <div class="feature-item">

@@ -4,7 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог материалов - СеверСтрой</title>
+
+    <title>Каталог: песок, щебень, ПГС с доставкой по Удмуртии | СеверСтрой</title>
+    <meta name="description" content="Каталог инертных материалов от СеверСтрой: песок, щебень, ПГС, ОПГС, асфальтная крошка. Актуальные цены, доставка по всей Удмуртии. Фильтр по фракции и марке прочности.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://severstroy18.ru/catalog">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://severstroy18.ru/catalog">
+    <meta property="og:title" content="Каталог: песок, щебень, ПГС с доставкой по Удмуртии | СеверСтрой">
+    <meta property="og:description" content="Каталог инертных материалов от СеверСтрой: песок, щебень, ПГС, ОПГС, асфальтная крошка. Актуальные цены, доставка по всей Удмуртии.">
+    <meta property="og:image" content="https://severstroy18.ru/img/background.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="СеверСтрой">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('android-chrome-192x192.png') }}">
+
+    <!-- JSON-LD: ItemList -->
+    <script type="application/ld+json">
+    @verbatim
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Каталог инертных материалов СеверСтрой",
+        "url": "https://severstroy18.ru/catalog",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Песок строительный",
+                "url": "https://severstroy18.ru/catalog?category=sand"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "ПГС и ОПГС",
+                "url": "https://severstroy18.ru/catalog?category=mix"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Щебень",
+                "url": "https://severstroy18.ru/catalog?category=stone"
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Асфальтная крошка",
+                "url": "https://severstroy18.ru/catalog?category=asphalt"
+            }
+        ]
+    }
+    @endverbatim
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
@@ -169,7 +228,7 @@
 
 <div class="container">
     <h1 class="page-title">Каталог строительных материалов</h1>
-    <p class="page-subtitle">Песок, щебень, ПГС и другие материалы с доставкой по Ижевску и Удмуртии</p>
+    <p class="page-subtitle">Песок, щебень, ПГС и другие материалы с доставкой по всей Удмуртии</p>
 
     <button class="mobile-filters-toggle" id="mobileFiltersToggle">
         <i class="fas fa-filter"></i>
