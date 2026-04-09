@@ -75,7 +75,7 @@
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Инертные материалы <br><span>с доставкой</span></h1>
-            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой по всей Удмуртии</p>
+            <p class="hero-subtitle">Широкий ассортимент инертных материалов высокого качества по доступным ценам с оперативной доставкой по Ижевску и Удмуртии</p>
             <div class="hero-buttons">
                 <a href="{{ route('catalog') }}" class="btn btn-primary">Каталог материалов</a>
                 <a href="#contacts" class="btn btn-outline">Связаться с нами</a>
@@ -184,7 +184,7 @@
         </div>
         <div class="transport-content">
             <div class="transport-description">
-                <p>Перевозим сыпучие материалы по всей Удмуртии. Собственный автопарк самосвалов гарантирует оперативность и надёжность. Индивидуальный подход к каждому клиенту.</p>
+                <p>Перевозим сыпучие материалы по Ижевску и Удмуртии. Собственный автопарк самосвалов гарантирует оперативность и надёжность. Индивидуальный подход к каждому клиенту.</p>
             </div>
             <div class="transport-features">
                 <div class="feature-item">
@@ -355,8 +355,8 @@
                     <h3><i class="fas fa-share-alt"></i> Социальные сети</h3>
                     <p>Свяжитесь с нами через удобный для вас мессенджер</p>
                     <div class="contact-social">
-                        <a href="#" title="ВКонтакте"><i class="fab fa-vk"></i></a>
-                        <a href="#" title="Телеграм"><i class="fab fa-telegram"></i></a>
+                        <a href="https://t.me/+79128566756" target="_blank" rel="noopener noreferrer" title="Телеграм"><img src="{{ asset('img/icon/telegram_black.svg') }}" alt="Телеграм"></a>
+                        <a href="https://max.ru/u/f9LHodD0cOInb7XYQbGqykTbZ1bAlogSCK3sbgHG7qgb2FIKKdlIzjNpn70" target="_blank" rel="noopener noreferrer" title="Max"><img src="{{ asset('img/icon/Max_logo_black.svg') }}" alt="Max"></a>
                     </div>
                 </div>
             </div>

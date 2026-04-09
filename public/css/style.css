@@ -2649,3 +2649,13 @@ body.dark-mode .footer-contact p {
     box-shadow: 0 0 0 3px rgba(55, 46, 127, 0.1);
 }
 
+
+/* Размер SVG-иконок соцсетей */
+.social-icons a img,
+.footer-social a img,
+.contact-social a img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}

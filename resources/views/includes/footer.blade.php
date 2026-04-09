@@ -8,8 +8,8 @@
 
                 </div>
                 <div class="footer-social">
-                    <a href="#" title="ВКонтакте"><i class="fab fa-vk"></i></a>
-                    <a href="#" title="Телеграм"><i class="fab fa-telegram"></i></a>
+                    <a href="https://t.me/+79128566756" target="_blank" rel="noopener noreferrer" title="Телеграм"><img src="{{ asset('img/icon/telegram.svg') }}" alt="Телеграм"></a>
+                    <a href="https://max.ru/u/f9LHodD0cOInb7XYQbGqykTbZ1bAlogSCK3sbgHG7qgb2FIKKdlIzjNpn70" target="_blank" rel="noopener noreferrer" title="Max"><img src="{{ asset('img/icon/Max_logo.svg') }}" alt="Max"></a>
                 </div>
             </div>
 
