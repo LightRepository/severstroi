@@ -1214,11 +1214,7 @@ footer {
 }
 
 .map-point {
-    transition: transform 0.2s;
-}
-.map-point:hover {
-    transform: translate(-50%, -50%) scale(1.2);
-    z-index: 20;
+    transition: none;
 }
 
 .point-marker {
@@ -1240,53 +1236,8 @@ footer {
     font-size: 16px;
 }
 
-.map-point.active .point-marker {
-    background: #2ecc71;
-    animation: pulse 2s infinite;
-}
-
 .point-info {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.map-point:hover .point-info {
-    opacity: 1;
-    visibility: visible;
-}
-
-.point-info h5 {
-    margin: 0 0 5px;
-    font-size: 14px;
-    color: #2c3e50;
-}
-
-.point-info p {
-    margin: 0;
-    font-size: 12px;
-    color: #6c757d;
-}
-
-@keyframes pulse {
-    0% {
-        transform: rotate(-45deg) scale(1);
-    }
-    50% {
-        transform: rotate(-45deg) scale(1.1);
-    }
-    100% {
-        transform: rotate(-45deg) scale(1);
-    }
+    display: none;
 }
 
 .points-list {
@@ -2648,7 +2599,7 @@ body.dark-mode .footer-contact p {
 /* Контейнер точки */
 .map-point {
     position: absolute;
-    cursor: pointer;
+    cursor: default;
     z-index: 10;
     transform: translate(-50%, -50%);
 }
@@ -2662,75 +2613,17 @@ body.dark-mode .footer-contact p {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
     color: white;
     font-size: 18px;
 }
 
 .point-marker i {
-    transform: rotate(45deg); /* компенсируем поворот контейнера */
+    transform: rotate(45deg);
 }
 
-.map-point:hover .point-marker {
-    transform: rotate(-45deg) scale(1.2);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-/* Базовая позиция точки */
-.map-point {
-    position: absolute;
-    cursor: pointer;
-    z-index: 10;
-    transform: translate(-50%, -50%);
-}
-
-/* Тултип */
+/* Тултип — скрыт */
 .point-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    color: #333;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    margin-bottom: 10px;
-    z-index: 30;
-    font-weight: normal;
-    line-height: 1.4;
-    border: 1px solid rgba(0,0,0,0.1); /* уже есть, но убедитесь */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-}
-
-.map-point:hover .point-tooltip {
-    opacity: 1;
-}
-
-/* Стрелочка снизу тултипа */
-.point-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -6px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
-
-/* Адаптация для мобильных */
-@media (max-width: 767px) {
-    .point-tooltip {
-        font-size: 12px;
-        padding: 6px 10px;
-        white-space: normal;
-        max-width: 200px;
-    }
+    display: none;
 }
 
 /* === Стилизация select в модальном окне === */
@@ -2756,49 +2649,3 @@ body.dark-mode .footer-contact p {
     box-shadow: 0 0 0 3px rgba(55, 46, 127, 0.1);
 }
 
-/* === Улучшение тултипов на карте === */
-.point-tooltip {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Вариант появления снизу (когда сверху нет места) */
-.point-tooltip.tooltip-bottom {
-    bottom: auto;
-    top: 100%;
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
-.point-tooltip.tooltip-bottom::after {
-    top: auto;
-    bottom: 100%;
-    border-color: transparent transparent white transparent;
-}
-
-/* Адаптация для мобильных (уже есть, но продублируем для надёжности) */
-@media (max-width: 767px) {
-    .point-tooltip {
-        font-size: 12px;
-        padding: 6px 10px;
-        white-space: normal;
-        max-width: 180px;
-    }
-}
-
-.point-tooltip.tooltip-left {
-    left: auto;
-    right: 0;
-    transform: none;
-}
-.point-tooltip.tooltip-left::after {
-    left: auto;
-    right: 10px;
-}
-.point-tooltip.tooltip-right {
-    left: 0;
-    transform: none;
-}
-.point-tooltip.tooltip-right::after {
-    left: 10px;
-}

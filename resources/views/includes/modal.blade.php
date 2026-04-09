@@ -39,7 +39,7 @@
                 <small>Например: г. Ижевск, ул. Ленина, 1 или 56.123, 53.456</small>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
-        </form>E
+        </form>
         <div class="modal-footer">
             <small>Нажимая «Отправить», вы соглашаетесь на обработку персональных данных</small>
         </div>

@@ -212,13 +212,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Карта с точками (статичное фото + кликабельные метки) -->
             <div class="pickup-map animate">
                 <div class="map-container" style="position: relative; display: inline-block; width: 100%;">
-                    <!-- Фоновое изображение карты (замените на своё) -->
                     <img src="{{ asset('img/map.png') }}" alt="Схема расположения карьеров" style="width: 100%; height: auto; border-radius: 16px; box-shadow: var(--shadow); display: block;">
-
                     <!-- Волковское месторождение (речные) -->
                     <div class="map-point" data-point="volkovskoe" style="position: absolute; left: 57%; top: 60%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
@@ -253,7 +249,7 @@
                     </div>
 
                     <!-- Каракулино (речные) -->
-                    <div class="map-point" data-point="karakulino" style="position: absolute; left: 60%; top: 95%;">
+                    <div class="map-point" data-point="karakulino" style="position: absolute; left: 60%; top: 93%;">
                         <div class="point-marker" style="background-color: #1e88e5;">
                             <i class="fas fa-water"></i>
                         </div>
