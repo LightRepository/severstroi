@@ -35,8 +35,9 @@ class OrderController extends Controller
             'time'        => now()->format('d.m.Y H:i'),
         ];
 
-        Mail::to(config('mail.to_address', 'manager@severstroi.ru'))
-            ->send(new OrderMail($details));
+        $recipient = env('MAIL_TO_ADDRESS') ?: env('MAIL_FROM_ADDRESS');
+
+        Mail::to($recipient)->send(new OrderMail($details));
 
         return response()->json(['success' => true, 'message' => 'Заявка отправлена!']);
     }

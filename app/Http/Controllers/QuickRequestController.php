@@ -27,8 +27,9 @@ class QuickRequestController extends Controller
             'time'     => now()->format('d.m.Y H:i'),
         ];
 
-        Mail::to(config('mail.to_address', 'manager@severstroi.ru'))
-            ->send(new QuickRequestMail($details));
+        $recipient = env('MAIL_TO_ADDRESS') ?: env('MAIL_FROM_ADDRESS');
+
+        Mail::to($recipient)->send(new QuickRequestMail($details));
 
         return response()->json(['success' => true, 'message' => 'Заявка принята!']);
     }
