@@ -15,7 +15,7 @@
 
         <div class="header-actions">
             <div class="phone">
-                <i class="fas fa-phone"></i><a href="tel:+79991897098">+7 (999) 189-70-98</a>
+                <i class="fas fa-phone"></i><a href="tel:+79991897098">+7 (912) 856-67-56</a>
             </div>
             <div class="social-icons">
                 <a href="https://t.me/+79128566756" target="_blank" rel="noopener noreferrer" title="Телеграм"><img src="{{ asset('img/icon/telegram_black.svg') }}" alt="Телеграм"></a>
